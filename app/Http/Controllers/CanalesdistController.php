@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\SortCatCanalesdistribucion;
+use App\WebCatCanalesdistribucion;
 
 class CanalesdistController extends Controller
 {   
@@ -19,7 +19,7 @@ class CanalesdistController extends Controller
      */
     public function index()
     {   
-        $canales = SortCatCanalesdistribucion::all();
+        $canales = WebCatCanalesdistribucion::all();
         return view('Canalesdistribucion.index',['canales' => $canales]);
     }
 
@@ -42,7 +42,7 @@ class CanalesdistController extends Controller
     public function store(Request $request)
     {
             if($request -> ajax()){
-                   $Canalesdistribucion = new SortCatCanalesdistribucion;
+                   $Canalesdistribucion = new WebCatCanalesdistribucion;
                    $Canalesdistribucion->Nombre =  $request->Nombre;
                    $Canalesdistribucion->Comision = $request->Comision;
                    $Canalesdistribucion->save();
@@ -61,7 +61,7 @@ class CanalesdistController extends Controller
     public function show(Request $request)
     {
             if($request ->ajax()){
-            $canal = SortCatCanalesdistribucion::find($request->idCanal);
+            $canal = WebCatCanalesdistribucion::find($request->idCanal);
                   return response()->json([
                    $canal
                 ]);
@@ -89,7 +89,7 @@ class CanalesdistController extends Controller
     public function update(Request $request)
     {
             if($request -> ajax()){
-                   $Canalesdistribucion = SortCatCanalesdistribucion::find($request->Id);
+                   $Canalesdistribucion = WebCatCanalesdistribucion::find($request->Id);
                    $Canalesdistribucion->Nombre =  $request->Nombre;
                    $Canalesdistribucion->Comision = $request->Comision;
                    $Canalesdistribucion->save();

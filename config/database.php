@@ -91,7 +91,7 @@ return [
         'sqlsrv' => [
              'driver' => 'sqlsrv',
              'host' => env('DB_HOST', 'integrasrv3'),
-             'database' => env('DB_DATABASE', 'SorteoBd'),
+             'database' => env('DB_DATABASE', 'bdsemprovocResp'),
              'username' => env('DB_USERNAME', 'SA'),
              'password' => env('DB_PASSWORD', 'int3gr@'),
              'charset' => 'utf8',

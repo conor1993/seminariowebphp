@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SortCatCanalesdistribucion extends Model
-{   
-	protected $primaryKey = 'Id';
-	protected $table ='SortCatCanalesdistribucion';
+class WebCatCanalesdistribucion extends Model
+{
+    protected $primaryKey = 'Id';
+	protected $table ='WebCatCanalesdistribucion';
 	protected $fillable = ['Nombre','Comision'];
     public $timestamps = false;
 }
