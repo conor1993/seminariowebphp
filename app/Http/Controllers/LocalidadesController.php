@@ -3,27 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\WebCatCobradores;
+use App\SortCatLocalidades;
 
-
-class CobradoresController extends Controller
-{   
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
+class LocalidadesController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $Cobradores =  WebCatCobradores::all();
-        return view('Cobradores.index',['Cobradores' => $Cobradores]);
+    {
+        //
     }
 
     /**
@@ -33,7 +24,7 @@ class CobradoresController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -44,16 +35,7 @@ class CobradoresController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request-> ajax()) {
-            $Cobradores = new WebCatCobradores;
-            $Cobradores->Nombre = $request->Nombre;
-            $Cobradores->ApellidoP = $request->Apellidop;
-            $Cobradores->ApellidoM = $request->Apellidom;
-            $Cobradores->Commission = $request->Commission;
-            $Cobradores->Serie = $request->Serie;
-            $Cobradores->save();
-            return response()->json([$Cobradores]);
-        }
+        //
     }
 
     /**
@@ -65,11 +47,11 @@ class CobradoresController extends Controller
     public function show(Request $request)
     {
             if($request ->ajax()){
-                $cobradores = WebCatCobradores::find($request->id);
+                $municipios =  SortCatLocalidades::where('idMunicipio', $request->Id)->get();
                       return response()->json([
-                      $cobradores
+                      $municipios
                     ]);
-         }
+            }
     }
 
     /**
@@ -90,18 +72,9 @@ class CobradoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        if ($request-> ajax()) {
-            $Cobradores =  WebCatCobradores::find($request->id);
-            $Cobradores->Nombre = $request->Nombre;
-            $Cobradores->ApellidoP = $request->Apellidop;
-            $Cobradores->ApellidoM = $request->Apellidom;
-            $Cobradores->Commission = $request->Commission;
-            $Cobradores->Serie = $request->Serie;
-            $Cobradores->save();
-            return response()->json([$Cobradores]);
-        }
+        //
     }
 
     /**

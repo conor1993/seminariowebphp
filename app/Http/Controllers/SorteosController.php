@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\WebCatSorteo;
 
 class SorteosController extends Controller
 {
@@ -18,8 +19,9 @@ class SorteosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('Sorteos.index');
+    {   
+        $sorteos = WebCatSorteo::all();
+        return view('Sorteos.index',['sorteos' => $sorteos]);
     }
 
     /**
@@ -39,8 +41,38 @@ class SorteosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {      
+
+            if($request -> ajax()){
+                   $Sorteos = new WebCatSorteo;
+                   $Sorteos->Nombre =  $request->Nombre;
+                   $Sorteos->Precio = $request->Precio;
+                   $Sorteos->NumeroPorBoleto = $request->Numeroporboleto;
+                   $Sorteos->Fecha = $request->Fechainicial;
+                   $Sorteos->FechaLimite = $request->Fechalimite;
+                   $Sorteos->CantidadBoletos = $request->CantidadBoletos;
+                   $Sorteos->save();
+            }
+
+            //creamos el arreglo de boletos
+            $cantidadBoletos = $request->CantidadBoletos+1;
+            $folioinicia     = $request->Folioinc;
+            $dataSet = [];
+
+            for ($i=0; $i < $cantidadBoletos ; $i++) { 
+                    $dataSet[] = [
+                        'NumeroBoleto'  => $folioinicia,
+                        'Asignado'    => 0,
+                        'IdSorteo' => $Sorteos->Id,
+                    ];
+
+                    $folioinicia = $folioinicia+1;
+            }
+
+            DB::table('WebCatBoletos')->insert($dataSet);
+
+            return  response()->json([$Sorteos]);
+
     }
 
     /**
@@ -49,9 +81,14 @@ class SorteosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+            if($request ->ajax()){
+                $sorteo = WebCatSorteo::find($request->idSorteo);
+                      return response()->json([
+                      $sorteo
+                    ]);
+         }
     }
 
     /**
@@ -72,9 +109,21 @@ class SorteosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+            if($request -> ajax()){
+                   $Sorteos = WebCatSorteo::find($request->Id);
+                   $Sorteos->Nombre =  $request->Nombre;
+                   $Sorteos->Precio = $request->Precio;
+                   $Sorteos->NumeroPorBoleto = $request->Numeroporboleto;
+                   $Sorteos->Fecha = $request->Fechainicial;
+                   $Sorteos->FechaLimite = $request->Fechalimite;
+                   $Sorteos->CantidadBoletos = $request->CantidadBoletos;
+                   $Sorteos->save();
+                   return response()->json([
+                            $Sorteos
+                    ]);
+            }
     }
 
     /**

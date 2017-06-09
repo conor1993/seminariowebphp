@@ -15,7 +15,7 @@ function agregarVladicaciones(){
 }
 //
 function dialogNotificador(){
-  dialog = new BootstrapDialog({message: 'Procesando.',closable: false,});
+  dialog = new BootstrapDialog({message: 'Procesando...',closable: false,});
   return dialog
 }
 //metodo para linmpiar los campo
@@ -34,11 +34,15 @@ function iniciarBotones(){
     $("#GuardarCanalesDistribucion").click(function(){
         dialog = dialogNotificador();
         if( $("#txtIdcanal").val() == ""){
+          if(validarCamposObligatorios()){
             dialog.open();
             guardarCanalDistribucion();
+          }
         }else{
+          if(validarCamposObligatorios()){
             dialog.open();
             actualizarCanalDistribucion()
+          }
         }
     });
     
@@ -99,12 +103,16 @@ function ActualizarRegistro(data){
 function notificar(exito){
     if(exito){
         dialog.setMessage("Operacion Exitosa")
+        setTimeout ("dialog.close()", 2000);
     }else{
-        dialog.setMessage("Ocurrio un error intentelo de nuevo")
+      dialog.close()
+      dialogWarning = dialogNotificador();
+      dialogWarning.setType(BootstrapDialog.TYPE_WARNING);
+        dialogWarning.setMessage("Ocurrio un error intentelo de nuevo")
+        dialogWarning.open()
+        setTimeout ("dialogWarning.close()", 5000); 
     }
-    setTimeout ("dialog.close()", 1000); 
 }
-
 //Metodo para buscar por id 
 function buscarID() {
   //OBTENETEMOS EL ID DEL LA FILA PRESIONADA
@@ -133,8 +141,27 @@ function consultarCanalDistribucion(id){
         });
 }
 //
-function valiarCamposObligatorios(){
+//validar camposobligatorios
+function validarCamposObligatorios(){ 
+  var valido= true
+  var cadena = ""
+  if($("#txtnombrecan").val() == ""){
+    cadena = cadena +"   * No se ha capturado el Nombre.\n"
+  }
+  if($("#txtacomisioncan").val() == ""){
+    cadena = cadena +"   * No se ha capturado el Precio.\n"
+    }
+    if (cadena != ""){
+      valido=false;
+      dialogWarning = dialogNotificador();
+      dialogWarning.setType(BootstrapDialog.TYPE_WARNING);
+      dialogWarning.setClosable(true);
+        dialogWarning.setMessage("Antes de guardar debe corregir lo siguiente:\n\n"+ cadena)
+        dialogWarning.open()
+        setTimeout ("dialogWarning.close()", 5000);
+    }
 
+    return valido
 }
 //SE INICIA EL DATATABLE
 function iniciartablaCanales(){

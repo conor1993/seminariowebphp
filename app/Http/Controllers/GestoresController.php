@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\WebCatGestores;
+use App\WebCatCanalesdistribucion;
 
 class GestoresController extends Controller
 {
@@ -18,8 +21,11 @@ class GestoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('Gestores.index');
+    {   
+
+        $canales = WebCatCanalesdistribucion::all();
+        $gestores = WebCatGestores::all();
+        return view('Gestores.index',['canales' => $canales],['gestores' => $gestores]);
     }
 
     /**
@@ -39,8 +45,17 @@ class GestoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        if ($request -> ajax()) {
+            $gestores = new WebCatGestores;
+            $gestores->Nombre  =  $request->Nombre;
+            $gestores->ApellidoP  =  $request->ApellidoP;
+            $gestores->ApellidoM  =  $request->ApellidoM;
+            $gestores->Commission  =  $request->Commission;
+            $gestores->IdCanaldistribucion  =  $request->Canaldis;
+            $gestores->save();
+            return  response()->json([$gestores]);
+        }
     }
 
     /**
@@ -49,9 +64,14 @@ class GestoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+            if($request ->ajax()){
+               $gestores =  WebCatGestores::find($request->idGestores);
+                      return response()->json([
+                      $gestores
+                    ]);
+            }
     }
 
     /**
@@ -72,9 +92,18 @@ class GestoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        if ($request -> ajax()) {
+            $gestores =  WebCatGestores::find($request->Id);
+            $gestores->Nombre  =  $request->Nombre;
+            $gestores->ApellidoP  =  $request->ApellidoP;
+            $gestores->ApellidoM  =  $request->ApellidoM;
+            $gestores->Commission  =  $request->Commission;
+            $gestores->IdCanaldistribucion  =  $request->Canaldis;
+            $gestores->save();
+            return  response()->json([$gestores]);
+        }
     }
 
     /**

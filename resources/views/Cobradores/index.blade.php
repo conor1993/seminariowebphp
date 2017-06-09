@@ -19,6 +19,7 @@
 	    		</div>
 	    		<div class="col-md-4">
 	    			<input type="text" class="form-control input-sm input-estilo" id="txtnombrecol">
+	    			<input  type="hidden" class="form-control" value="" id="txtIdCobradores">
 	    		</div>
 	    		<div class="col-md-2">
 	    			<label class="label-estilo" ><b>Apellido Paterno:</b></label>
@@ -72,7 +73,17 @@
                                             </tfoot>
                                             <tbody id="tbodyCodigo">
 
-
+                                                <?php
+                                                if (isset($Cobradores)) {
+                                                        foreach ($Cobradores as $Cobrador):
+                                                        	echo '<tr  data-codigo = "'.$Cobrador->Id.'">';
+                                                            echo '<td>' .$Cobrador->Nombre.'</td>';
+                                                            echo '<td>' .$Cobrador->ApellidoP.'</td>';
+                                                            echo '<td>' .$Cobrador->ApellidoM.'</td>';
+                                                            echo '</tr>';
+                                                        endforeach;
+                                                    }
+                                                    ?>
                                              
                                             </tbody>
                                         </table>          
@@ -82,7 +93,11 @@
                     </div>
                 </div>
 
-     <!-- fin del contenido de la pagina-->		
+     <!-- fin del contenido de la pagina-->	
+    <div class="col-md-12 text-right" style="">
+          <input type="button" id="CancelarCobradores" name="" value="Cancelar" class="btn btn-default estilo-boton">
+          <input type="button" id="GuardarCobradores" name="" value="Guardar" class="btn btn-default estilo-boton">
+    </div>	
 	</div>
     <!--fin del pánel body-->
 </div>

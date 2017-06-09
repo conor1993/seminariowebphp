@@ -29,9 +29,17 @@ Route::get('/', function () {
 
 		//RUTAS DE COLABORADORES
 		Route::get('/colaboradores', 'ColaboradoresController@index');
+		Route::post('/guardarColaboradores','ColaboradoresController@store');
+		Route::post('/consultarColaboradores', 'ColaboradoresController@show');
+		Route::post('/ActualizarColaboradores', 'ColaboradoresController@update');
+
 
 		//RUTAS DE COBRADORES
 		Route::get('/cobradores', 'CobradoresController@index');
+		Route::post('/guardarCobradores','CobradoresController@store');
+		Route::post('/consultarCobradores', 'CobradoresController@show');
+		Route::post('/ActualizaRrCobradores', 'CobradoresController@update');
+
 
 		//RUTAS DE CANALES DE DISTRIBUCION
 		Route::get('/canalesdistribucion', 'CanalesdistController@index');
@@ -41,12 +49,24 @@ Route::get('/', function () {
 
 		//RUTAS DE GESTORES
 		Route::get('/gestores', 'GestoresController@index');
+		Route::post('/guardargestores','GestoresController@store');
+		Route::post('/consultargestores', 'GestoresController@show');
+		Route::post('/Actualizargestores', 'GestoresController@update');
 
+		//RUTAS DE MUNICIPIOS
+		Route::post('/ConsultarMunicipios', 'MunicipiosController@show');
+
+		//RUTAS DE LOCALIDADES
+		Route::post('/ConsultarLocalidades', 'LocalidadesController@show');
+		
 		//RUTAS DE FORMAS DE PAGO
 		Route::get('/formaspagos', 'FormaspagosController@index');
 
 		//RUTAS DE SORTEOS
 		Route::get('/sorteos', 'SorteosController@index');
+		Route::post('/guardarSorteos','SorteosController@store');
+		Route::post('/consultarSorteos', 'SorteosController@show');
+		Route::post('/ActualizarSorteos', 'SorteosController@update');
 
 		//RUTAS DE SOLICITUD DE BOLETOS
 		Route::get('/solicitudboletos', 'SolicitudDeBoletosController@index');

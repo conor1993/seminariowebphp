@@ -45,7 +45,6 @@
                                      endforeach;
                                }
                              ?>
-
             			</select>
                 	</div>
                 </div>	
