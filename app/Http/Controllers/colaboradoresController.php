@@ -93,9 +93,14 @@ class colaboradoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+            if($request ->ajax()){
+                $colaboradores = WebCatColaboradores::find($request->id);
+                      return response()->json([
+                      $colaboradores
+                    ]);
+             }
     }
 
     /**
@@ -116,9 +121,38 @@ class colaboradoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        if ($request->ajax()) {
+              $colaboradores =  WebCatColaboradores::find($request->id);
+              $colaboradores->Nombre             =  $request->Nombre;
+              $colaboradores->ApellidoP          =  $request->ApellidoP;
+              $colaboradores->ApellidoM          =  $request->ApellidoM;
+              $colaboradores->IdGestor           =  $request->IdGestor;
+              $colaboradores->IdCanaldis         =  $request->IdCanaldis;
+              $colaboradores->Correspondecia     =  $request->Correspondecia;
+              $colaboradores->Commission         =  $request->Commission;
+              $colaboradores->Domicilio          =  $request->domicilio;
+              $colaboradores->Cp                 =  $request->Cp;
+              $colaboradores->Telefono           =  $request->Telefono;
+              $colaboradores->IdEstado           =  $request->IdEstado;
+              $colaboradores->Numeroint          =  $request->Numeroint;
+              $colaboradores->NumeroExt          =  $request->NumeroExt;
+              $colaboradores->IdMunicipio        =  $request->IdMunicipio;
+              $colaboradores->IdLocalidad        =  $request->IdLocalidad;
+              $colaboradores->Empresa            =  $request->Empresa;
+              $colaboradores->PuestoEmpresa      =  $request->PuestoEmpresa;
+              $colaboradores->DomiclioEmpresa    =  $request->DomiclioEmpresa;
+              $colaboradores->Cpempresa          =  $request->Cpempresa;
+              $colaboradores->NumerointEmpresa   =  $request->NumerointEmpresa;
+              $colaboradores->NumeroextEmpresa   =  $request->NumeroextEmpresa;
+              $colaboradores->IdEstadoEmpresa    =  $request->IdEstadoEmpresa;
+              $colaboradores->TelefonoEmpresa    =  $request->TelefonoEmpresa;
+              $colaboradores->IdmunicipioEmpresa =  $request->IdmunicipioEmpresa;
+              $colaboradores->IdLocalidadEmpresa =  $request->IdLocalidadEmpresa;
+              $colaboradores->save();
+              return response()->json([$colaboradores]);
+        }
     }
 
     /**

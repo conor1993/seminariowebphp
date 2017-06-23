@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\WebCatSorteo;
+use App\SortCatMunicipios;
+use App\SortCatLocalidades;
 
 class LiquidacionBoletosController extends Controller
 {
@@ -17,8 +20,11 @@ class LiquidacionBoletosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-         return view('LiquidacionDeBoletos.index');
+    {   
+         $sorteos =  WebCatSorteo::all();
+         $municipios =  SortCatMunicipios::where('idEstado', 25)->get();
+         $localidades =  SortCatLocalidades::where('idMunicipio', 6)->get();
+         return view('LiquidacionDeBoletos.index',['sorteos'=>$sorteos,'municpios' =>$municipios,'localidades' =>$localidades]);
     }
 
     /**
@@ -48,9 +54,18 @@ class LiquidacionBoletosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        if($request->ajax()){
+            $colaboradores = DB::table('webdeudores as ded')
+                        ->join('websolicitudboletos as sol', 'ded.idsolicitud', '=', 'sol.id')
+                        ->join('WebCatColaboradores as col', 'sol.IdColaborador', '=', 'col.id')
+                        ->select('col.Nombre','col.ApellidoP','col.ApellidoM', 'col.Commission','col.Domicilio','col.Cp','col.Numeroint','col.IdMunicipio','col.NumeroExt','col.IdLocalidad','sol.Folio','ded.MontoAcordado','sol.BoletosAutorizados','ded.boletosdevueltos','ded.BoletosLiquidados')
+                        ->where('col.id', '=', $request->idcol)
+                        ->where('sol.IdSorteo', '=', $request->idsorteo)
+                        ->get();
+             return response()->json([$colaboradores]);
+        }
     }
 
     /**

@@ -64,11 +64,15 @@ $(document).ready(function(){
                   data:{id:$("#txtIdsorteo").val(),Nombre:$("#txtnombresorteo").val(),Precio:$("#txtpreciosorteo").val(),Numeroporboleto:$("#txtnumeroboletosorteo").val()
                         ,Fechainicial:$("#txtfechainicial").val(),Fechalimite:$("#txtfechalimite").val(),CantidadBoletos:$("#txtcantidadboletos").val(),Folioinc:$("#txtFoliosorteo").val()}   
             }).done(function(data) {
+                  // se notifica el exito de la operacion
+                  if(data != "404"){
+                    notificar(true,"Operacion Exitosa")
+                  }else if (data = "404") {
+                    notificar(false,"Error")
+                  }
                   // se agrega el dato al grid
                   var rowNode = $('#tabla_lista_sorteos').DataTable().row.add([data[0].Nombre, data[0].Precio,data[0].Fecha,data[0].FechaLimite]).draw().node();
                   $(rowNode).attr('data-codigo',data[0].id);
-                  // se notifica el exito de la operacion
-                  notificar(true)
                   //limpiar campos
                   limpiar();
             }).fail( function() {

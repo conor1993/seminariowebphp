@@ -1,2 +1,23 @@
+/* estilos de   de input*/
 .input-estilo{margin:1%}
+
+/* estilos de   etiquetas*/
 .label-estilo{margin-top:5%}
+
+/*estilo boton de busqueda en caja de texto*/
+.botonestilo{
+	padding: 4px 50px;
+    padding-top: 8px;
+    padding-right: 12px;
+    padding-bottom: 4px;
+    padding-left: 12px;
+}
+
+/* radiobutons estilos */
+
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}

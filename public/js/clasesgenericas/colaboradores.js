@@ -113,6 +113,51 @@
     }
     //metodo para actualizar los datos de los colaboradores
     function actualizarColaboradores(){
+        var id                   = $("#txtIdcolaborador").val()
+        var Nombre               = $("#txtNomcolaborador").val()
+        var ApellidoP            = $("#txtApellidoPaterno").val()
+        var ApellidoM            = $("#txtApellidoMaterno").val()
+        var IdGestor             = $("#stlgestor").val()
+        var IdCanaldis           = $("#stlcanal").val()
+        var Correspondecia       = $("#txtCorrespondencia").val()
+        var Commission           = $("#txtcommissioncol").val()
+        var domicilio            = $("#txtADomicilio").val()
+        var Cp                   = $("#txtcodpostald").val()
+        var Telefono             = $("#txtATelefono").val()
+        var IdEstado             = $("#sltestadopersonal").val()
+        var Numeroint            = $("#txtNumerointpersonal").val()
+        var NumeroExt            = $("#txtNumeropersonal").val()
+        var IdMunicipio          = $("#sltciudaddomicilio").val()
+        var IdLocalidad          = $("#sltlocaliaddom").val()
+        var Empresa              = $("#txtnombreEmpresa").val()
+        var PuestoEmpresa        = $("#txtpuesto").val()
+        var DomiclioEmpresa      = $("#txtdomicilioempleo").val()
+        var Cpempresa            = $("#txtcodpostalp").val()
+        var NumerointEmpresa     = $("#txtNumerointempleo").val()
+        var NumeroextEmpresa     = $("#txtNumeroempleo").val()
+        var IdEstadoEmpresa      = $("#sltestadotrabajo").val()
+        var TelefonoEmpresa      = $("#txtNumerop").val()     
+        var IdmunicipioEmpresa   = $("#sltciudadtrabajo").val()
+        var IdLocalidadEmpresa   = $("#sltlocaliadempleo").val()
+
+            $.ajax({
+                  url:'/guardarColaboradores',
+                  headers:{'X-CSRF-TOKEN':$("#tokena").val()},
+                  type:'POST',
+                  datatype:'html',
+                  data:{id:id,Nombre:Nombre,ApellidoP:ApellidoP,ApellidoM:ApellidoM,IdGestor:IdGestor,IdCanaldis:IdCanaldis,Correspondecia:Correspondecia,Commission:Commission,
+                        domicilio:domicilio,Cp:Cp,Telefono:Telefono,IdEstado:IdEstado,Numeroint:Numeroint,NumeroExt:NumeroExt,IdMunicipio:IdMunicipio,IdLocalidad:IdLocalidad,
+                        Empresa:Empresa,PuestoEmpresa:PuestoEmpresa,DomiclioEmpresa:DomiclioEmpresa,Cpempresa:Cpempresa,NumerointEmpresa:NumerointEmpresa,
+                        NumeroextEmpresa:NumeroextEmpresa,IdEstadoEmpresa:IdEstadoEmpresa,TelefonoEmpresa:TelefonoEmpresa,IdmunicipioEmpresa:IdmunicipioEmpresa,
+                        IdLocalidadEmpresa:IdLocalidadEmpresa}   
+            }).done(function(data) {
+                 //notificarrrr
+                  notificar(true)
+                  limpiar();
+            }).fail( function() {
+                //si falla se notifica
+                notificar(false)
+            });
 
     }
     //metodo para consultar los municipios

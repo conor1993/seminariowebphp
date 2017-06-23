@@ -42,36 +42,43 @@ class SorteosController extends Controller
      */
     public function store(Request $request)
     {      
-
-            if($request -> ajax()){
-                   $Sorteos = new WebCatSorteo;
-                   $Sorteos->Nombre =  $request->Nombre;
-                   $Sorteos->Precio = $request->Precio;
-                   $Sorteos->NumeroPorBoleto = $request->Numeroporboleto;
-                   $Sorteos->Fecha = $request->Fechainicial;
-                   $Sorteos->FechaLimite = $request->Fechalimite;
-                   $Sorteos->CantidadBoletos = $request->CantidadBoletos;
-                   $Sorteos->save();
+        DB::beginTransaction();
+            try {
+                    if($request -> ajax()){
+                           $Sorteos = new WebCatSorteo;
+                           $Sorteos->Nombre =  $request->Nombre;
+                           $Sorteos->Precio = $request->Precio;
+                           $Sorteos->NumeroPorBoleto = $request->Numeroporboleto;
+                           $Sorteos->Fecha = $request->Fechainicial;
+                           $Sorteos->FechaLimite = $request->Fechalimite;
+                           $Sorteos->CantidadBoletos = $request->CantidadBoletos;
+                           $Sorteos->save();
+                    }
+                    //creamos el arreglo de boletos
+                    $cantidadBoletos = $request->CantidadBoletos+1;
+                    $folioinicia     = $request->Folioinc;
+                    $dataSet = [];
+                    for ($i=0; $i < $cantidadBoletos ; $i++) { 
+                            $dataSet[] = [
+                                'NumeroBoleto'  => $folioinicia,
+                                'Estatus'    => 'N',
+                                'IdSorteo' => $Sorteos->Id,
+                            ];
+                            $folioinicia = $folioinicia+1;
+                            if(count($dataSet) == 499){
+                                 DB::table('WebCatBoletos')->insert($dataSet);
+                                 $dataSet =[];
+                            }
+                    }
+                    DB::table('WebCatBoletos')->insert($dataSet);
+            }catch (\Exception $e) {
+                 DB::rollback();
+                 //$Sorteos = $e->getMessage();
+                 $Sorteos = "404";
             }
 
-            //creamos el arreglo de boletos
-            $cantidadBoletos = $request->CantidadBoletos+1;
-            $folioinicia     = $request->Folioinc;
-            $dataSet = [];
-
-            for ($i=0; $i < $cantidadBoletos ; $i++) { 
-                    $dataSet[] = [
-                        'NumeroBoleto'  => $folioinicia,
-                        'Asignado'    => 0,
-                        'IdSorteo' => $Sorteos->Id,
-                    ];
-
-                    $folioinicia = $folioinicia+1;
-            }
-
-            DB::table('WebCatBoletos')->insert($dataSet);
-
-            return  response()->json([$Sorteos]);
+        DB::commit();
+        return  response()->json([$Sorteos]);
 
     }
 

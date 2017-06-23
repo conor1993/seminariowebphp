@@ -70,15 +70,27 @@ Route::get('/', function () {
 
 		//RUTAS DE SOLICITUD DE BOLETOS
 		Route::get('/solicitudboletos', 'SolicitudDeBoletosController@index');
-
+		Route::post('/guardarsolicitudboletos','SolicitudDeBoletosController@store');
+		Route::post('/consultarsolicitudboletos', 'SolicitudDeBoletosController@show');
+		Route::post('/Actualizarsolicitudboletos', 'SolicitudDeBoletosController@update');
+		Route::post('/EditarEstatussolicitudboletos', 'SolicitudDeBoletosController@edit');
 		//AUTORIZACION BOLETOS 
 		Route::get('/autorizacionboletos', 'AutorizacionBoletosController@index');
+		Route::post('/guardarautorizacionboletos','AutorizacionBoletosController@store');
+		Route::post('/consultarautorizacionboletos', 'AutorizacionBoletosController@show');
+		Route::post('/Actualizarautorizacionboletos', 'AutorizacionBoletosController@update');
+
+		//BOLETOS
+		Route::post('/validarBoletos','BoletosController@validarBoletos');
 
 		//ASIGNACION DE BOLETOS
 		Route::get('/asignacionboletos', 'AsignacionBoletosController@index');    
 
 		//LIQUIDACION DE BOLETOS
 		Route::get('/liquidacionboletos', 'LiquidacionBoletosController@index');
+		Route::post('/guardarliquidacionboletos','LiquidacionBoletosController@store');
+		Route::post('/consultarliquidacionboletos', 'LiquidacionBoletosController@show');
+		Route::post('/Actualizarliquidacionboletos', 'LiquidacionBoletosController@update');
 
 		//REPORTE DE BOLETOS
 		Route::get('/reporteboletos', 'ReporteBoletosController@index');
