@@ -90,8 +90,8 @@ class AutorizacionBoletosController extends Controller
             catch (\Exception $e)
             {
                  DB::rollback();
-                 $solicitud = $e->getMessage();
-                 //$solicitud = "404";
+                 //$solicitud = $e->getMessage();
+                 $solicitud = "404";
             }
             // FIN DE LA TRANSACCION
             DB::commit();

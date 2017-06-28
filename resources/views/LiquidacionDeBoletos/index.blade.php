@@ -15,7 +15,8 @@
             <div class="col-md-12"><h1></h1></div>
 	          <div class="col-md-12">
 	              <fieldset>
-						<legend>Datos Personales:</legend>
+						      <legend>
+                      Datos Personales:</legend>
                         <div class="col-md-12">
                                 <div class="col-md-2">
                                     <label class="label-estilo" ><b>Sorteo:</b></label>
@@ -38,7 +39,7 @@
                                     <label class="label-estilo" ><b>Colaborador:</b></label>
                                 </div>
                                 <div class="col-md-4" >
-                                    <input class="form-control input-sm input-estilo" type="text" id="txtNomcolaborador" >
+                                    <input class="form-control input-sm input-estilo" type="text" id="txtNomcolaborador"  placeholder="Ingrese la clave o Nombre" autofocus>
                                 </div>
                                 <div class="col-md-2">
                                   
@@ -66,8 +67,6 @@
 				  </fieldset>
 	        </div>
             <div class="col-md-12">
-               <fieldset>
-                 <legend>Domicilio:</legend>
                     <div class="col-md-12">
                         <div class="col-md-2">
                             <label class="label-estilo" ><b>Dmoicilio:</b></label>
@@ -128,7 +127,7 @@
                             </select>
                         </div>
                     </div>
-                </fieldset>
+             
              </div>
             <div class="col-md-12">
                <fieldset>
@@ -143,46 +142,83 @@
                                        <th>Devueltos</th>
                                        <th>Saldo</th>
                                        <th>Commission</th>
+                                       <th>chek</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
 
                                 </tfoot>
                                 <tbody id="tbodyCodigo">
-                                    <tr>
 
-                                    </tr>  
                                 </tbody>
                         </table>          
                     </div>
                 </fieldset>
              </div>
-            <div class="col-md-12">
-               <fieldset>
-                 <legend>Liquidar:</legend>
+            <div class="col-md-12" >
+              <fieldset>
+                <legend>Liquidar:</legend>
+                    <div class="col-md-12">
+                      <div class="col-md-4">
+                        <label class="btn btn-default rdtestatus1"  >
+                          Liquidación Total
+                          <input type="radio" name="rdtliqu" id="rdtaprobado" autocomplete="off" value="T" >
+                          <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                        <label class="btn btn-default rdtestatus2"  >
+                          Liquidación Parcial
+                          <input type="radio" name="rdtliqu" id="rdtrechazado" autocomplete="off" value="P" >
+                          <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                      </div>
+                    </div>
+                </fieldset>
+             </div>
+             <div class="col-md-12" >
+             <div class="col-md-12"><br></div>
+            <div class="col-md-12" style="display: none" id="divcobros1">
                     <div class="col-md-12">
                         <div class="col-md-2">
-                            <label class="label-estilo" ><b>Liquidando:</b></label>
+                            <label class="label-estilo" ><b>Total:</b></label>
                         </div>
                         <div class="col-md-4">
-                            <input class="form-control input-sm input-estilo" type="text" id="txtliquidando" >
+                            <input class="form-control input-sm input-estilo" disabled="disabled" type="text" id="txttotal" >
                         </div>
-                        <div class="col-md-2">
-                            <label class="label-estilo" ><b>Dovolviendo:</b></label>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control input-sm input-estilo" type="text" id="txtdevolbiendo" value="">
-                        </div>
+                    </div>
+             </div>
+            <div class="col-md-12" style="display: none" id="divcobros2">
+                    <div class="col-md-12">
+                       <table id="tabla_lista_boletos" class="table table-striped table-bordered ocultar"  cellspacing="0" width="100%">
+                              <thead class="ui-th-column ui-th-ltr ui-state-default" style="height: 50px">
+                                   <tr>
+                                       <th>boleto</th>
+                                       <th>chek</th>
+                                       <th>boleto</th>
+                                       <th>chek</th>
+                                       <th>boleto</th>
+                                       <th>chek</th>
+                                       <th>boleto</th>
+                                       <th>chek</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+
+                                </tfoot>
+                                <tbody id="tbodyboletos">
+                                    <tr>
+
+                                    </tr>  
+                                </tbody>
+                        </table> 
                     </div>
                     <div class="col-md-12">
                         <div class="col-md-2">
                             <label class="label-estilo" ><b>Total:</b></label>
                         </div>
                         <div class="col-md-4">
-                            <input class="form-control input-sm input-estilo" type="text" id="txttotal" >
+                            <input class="form-control input-sm input-estilo " disabled="disabled" type="text" id="txttotaldev" >
                         </div>
                     </div>
-                </fieldset>
              </div>
             <div class="col-md-12 text-right" style="">
                   <input type="button" id="CancelarPago" name="" value="Cancelar" class="btn btn-default estilo-boton">

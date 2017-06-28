@@ -8,6 +8,6 @@ class webdeudores extends Model
 {
     protected $primaryKey = 'Id';
 	protected $table ='Webdeudores';
-	protected $fillable = ['Idsolicitud','MontoAcordado','MontoPagado','FechaIngreso','FechaPago','Estatus'];
+	protected $fillable = ['Idsolicitud','MontoAcordado','MontoPagado','FechaIngreso','FechaPago','Estatus','BoletosDevueltos','BoletosLiquidados'];
     public $timestamps = false;
 }
