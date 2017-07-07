@@ -52,7 +52,10 @@ class AutorizacionBoletosController extends Controller
            $bolets = $request->arregloBoletos;
            $sorteo = $request->sorteo; 
            $dataSet = [];
+           $dataSetmov=[];
            $Idsolicitud =$request->Id;
+           $fechaActual = date("d/m/Y");
+           $IdColaborador = $request->idcolaborador;
            //LLENAR DATASET
             for ($i=0; $i < count($bolets) ; $i++) { 
                    $dataSet[] = [
@@ -60,6 +63,15 @@ class AutorizacionBoletosController extends Controller
                         'IdSorteo' => $sorteo,
                         'IdSolicitud' => $request->idsolicitud,
                     ];
+
+                $dataSetmov[] = [
+                        'IdColaborador'  => $IdColaborador,
+                        'NumeroBoleto' => $bolets[$i],
+                        'IdSorteo' => $sorteo,
+                        'IdTipoMovimiento'=>'ASIG',
+                        'Fecha' => $fechaActual,
+                ];
+
                    $boletos[$i]=$bolets[$i];
             }
             //COMEINZA TRANSACCION
@@ -84,14 +96,16 @@ class AutorizacionBoletosController extends Controller
                      $deudor->FechaIngreso = '22-06-2017';
                      $deudor->Estatus='V';
                      $deudor->save();
-                 //
+                 //SE REGISTRA EL MOVIMIENTO
+                 DB::table('webmovdeudores')->insert($dataSetmov);
+
             }
             // ERROR DE LA TRANSACCION
             catch (\Exception $e)
             {
                  DB::rollback();
-                 //$solicitud = $e->getMessage();
-                 $solicitud = "404";
+                 $solicitud = $e->getMessage();
+                 //$solicitud = "404";
             }
             // FIN DE LA TRANSACCION
             DB::commit();

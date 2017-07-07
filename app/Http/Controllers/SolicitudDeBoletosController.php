@@ -50,6 +50,8 @@ class SolicitudDeBoletosController extends Controller
     public function store(Request $request)
     {    
 
+
+
         //generar el folio ----------------------------------------------------------------------------------------
         $consecutivo = DB::table('WebFolioSolicitudes')->where('IdSorteo', $request->IdSorteo)->max('Consecutivo');
         $longitud = 5 - strlen($consecutivo);
@@ -75,8 +77,6 @@ class SolicitudDeBoletosController extends Controller
            $solicitud = new WebSolicitudBoletos;
            $solicitud->Folio = $Folio;
            $solicitud->IdColaborador = $request->IdColaborador;
-           $solicitud->IdGestor =$request->IdGestor;
-           $solicitud->IdCanalDistribucion = $request->IdCanalDistribucion;
            $solicitud->BoletosSolicitados = $request->BoletosSolicitados;
            $solicitud->BoletosAutorizados = $request->BoletosAutorizados;
            $solicitud->Estatus = $request->Estatus;
@@ -96,7 +96,6 @@ class SolicitudDeBoletosController extends Controller
      */
     public function show(Request $request)
     {        
-
 
             if($request ->ajax()){
                $solicitud = DB::table('WebSolicitudBoletos')
@@ -145,8 +144,6 @@ class SolicitudDeBoletosController extends Controller
         if($request->ajax()){
            $solicitud = WebSolicitudBoletos::find($request->Id);
            $solicitud->IdColaborador = $request->IdColaborador;
-           $solicitud->IdGestor =$request->IdGestor;
-           $solicitud->IdCanalDistribucion = $request->IdCanalDistribucion;
            $solicitud->BoletosSolicitados = $request->BoletosSolicitados;
            $solicitud->BoletosAutorizados = $request->BoletosAutorizados;
            $solicitud->Estatus = $request->Estatus;

@@ -102,7 +102,22 @@ class colaboradoresController extends Controller
                     ]);
              }
     }
+    public function shownombre(Request $request)
+    {  
+            if($request->ajax()){
+                $colaboradores = DB::table('WebCatColaboradores as col')
+                                ->join('WebSolicitudBoletos as sol ','col.Id','=','sol.IdColaborador')
+                                ->select('col.*')
+                                ->where('sol.Estatus', '=', 'A')
+                                ->where('Nombre', 'like', $request->Nombre.'%')
+                                ->get();
 
+             
+                 return response()->json([$colaboradores]);
+            }
+    }
+
+    
     /**
      * Show the form for editing the specified resource.
      *

@@ -15,7 +15,7 @@
     <link href="js/datatables/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="js/vendor/bootstraps/css/bootstrap-dialog.css" rel="stylesheet">
     <link href="js/vendor/bootstraps/css/bootstrap-dialog.min.css" rel="stylesheet">
-
+    <link href="js/vendor/bootstraps/css/select2.css" rel="stylesheet">
      
 
     
@@ -28,7 +28,6 @@
 
 
 
-
      <!-- dialogos -->
     <script src="js/vendor/jquery/bootstrap-dialog.js"></script>
     <script src="js/vendor/jquery/bootstrap-dialog.min.js"></script>
@@ -38,8 +37,12 @@
     <script src="js/datatables/jquery.dataTables.min.js"></script>
     <script src="js/datatables/dataTables.bootstrap.min.js"></script>
     <!-- menu lateral derechoo  nuevo -->
-     <script src="js/vendor/menuLateral/menulateral2.js"></script>
-    <!-- estilo a cajas de texto personalizado-->
+
+
+    <!-- select -->
+    <script src="js/vendor/jquery/bootstrap-dialog.js"></script>
+    <script src="js/vendor/jquery/select2.js"></script>
+
    <link href="css/estilosInput.css" rel="stylesheet">
 
     <script>
@@ -109,45 +112,95 @@
                                 <ul class="children nav-child unstyled small collapse" id="sub-item-1">
                                     <li class="item-2 deeper parent active">
                                         <a class="" href="#">
-                                            <span data-toggle="collapse" data-parent="#menu-group-1" href="#sub-item-2" class="sign"><i class="icon-plus icon-white"></i></span>
-                                            <span class="lbl">Menu 1</span> 
+                                            <span data-toggle="collapse" data-parent="#menu-group-2" href="#sub-item-2" class="sign"><i class="icon-plus icon-white"></i></span>
+                                            <span class="lbl">Catálogos</span> 
                                         </a>
                                         <ul class="children nav-child unstyled small collapse" id="sub-item-2">
-                                            <li class="item-3 current active">
-                                                <a class="" href="#">
+                                            <li class="item-3">
+                                                <a class="" href="/colaboradores">
                                                     <span class="sign"><i class="icon-play"></i></span>
-                                                    <span class="lbl">Menu 1.1</span> (current menu)
+                                                    <span class="lbl">Colaboradores</span> 
                                                 </a>
                                             </li>
                                             <li class="item-4">
-                                                <a class="" href="#">
+                                                <a class="" href="/cobradores">
                                                     <span class="sign"><i class="icon-play"></i></span>
-                                                    <span class="lbl">Menu 1.2</span> 
+                                                    <span class="lbl">Cobradores</span> 
                                                 </a>
-                                            </li>                                
-                                        </ul>
-                                    </li>
-                                    <li class="item-5 deeper parent">
-                                        <a class="" href="#">
-                                            <span data-toggle="collapse" data-parent="#menu-group-1" href="#sub-item-5" class="sign"><i class="icon-plus icon-white"></i></span>
-                                            <span class="lbl">Menu 2</span> 
-                                        </a>
-                                        <ul class="children nav-child unstyled small collapse" id="sub-item-5">
-                                            <li class="item-6">
-                                                <a class="" href="#">
+                                            </li>    
+                                            <li class="item-5">
+                                                <a class="" href="/canalesdistribucion">
                                                     <span class="sign"><i class="icon-play"></i></span>
-                                                    <span class="lbl">Menu 2.1</span>                                    
+                                                    <span class="lbl">Cnalaes de distribucion</span> 
+                                                </a>
+                                            </li>      
+                                            <li class="item-5">
+                                                <a class="" href="/gestores">
+                                                    <span class="sign"><i class="icon-play"></i></span>
+                                                    <span class="lbl">Gestores</span> 
                                                 </a>
                                             </li>
-                                            <li class="item-7">
-                                                <a class="" href="#">
+                                            <li class="item-5">
+                                                <a class="" href="/sorteos">
                                                     <span class="sign"><i class="icon-play"></i></span>
-                                                    <span class="lbl">Menu 2.2</span>                                    
+                                                    <span class="lbl">Sorteos</span> 
+                                                </a>
+                                            </li>                        
+                                        </ul>
+                                    </li>
+                                    <li class="item-3 deeper parent">
+                                        <a class="" href="">
+                                            <span data-toggle="collapse" data-parent="#menu-group-3" href="#sub-item-3" class="sign"><i class="icon-plus icon-white"></i></span>
+                                            <span class="lbl">Movimientos</span> 
+                                        </a>
+                                        <ul class="children nav-child unstyled small collapse" id="sub-item-3">
+                                            <li class="item-6">
+                                                <a class="" href="/solicitudboletos">
+                                                    <span class="sign"><i class="icon-play"></i></span>
+                                                    <span class="lbl">Solicitud de boletos</span>                                    
+                                                </a>
+                                            </li>
+                                            <li class="item-8">
+                                                <a class="" href="/autorizacionboletos">
+                                                    <span class="sign"><i class="icon-play"></i></span>
+                                                    <span class="lbl">Autorizacion de boletos</span>                                    
+                                                </a>
+                                            </li>
+                                            <li class="item-9">
+                                                <a class="" href="/liquidacionboletos">
+                                                    <span class="sign"><i class="icon-play"></i></span>
+                                                    <span class="lbl">Liquidacion de boletos</span>                                    
+                                                </a>
+                                            </li>
+                                            <li class="item-10">
+                                                <a class="" href="/asignacioncobradores">
+                                                    <span class="sign"><i class="icon-play"></i></span>
+                                                    <span class="lbl">Asignacion Cobradores</span>                                    
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
 
+                                    <li class="item-4 deeper parent">
+                                        <a class="" href="">
+                                            <span data-toggle="collapse" data-parent="#menu-group-4" href="#sub-item-4" class="sign"><i class="icon-plus icon-white"></i></span>
+                                            <span class="lbl">Reportes</span> 
+                                        </a>
+                                        <ul class="children nav-child unstyled small collapse" id="sub-item-4">
+                                            <li class="item-6">
+                                                <a class="" href="/reportecolaboradores">
+                                                    <span class="sign"><i class="icon-play"></i></span>
+                                                    <span class="lbl">Reporte colaboradores</span>                                    
+                                                </a>
+                                            </li>
+                                            <li class="item-8">
+                                                <a class="" href="/reporteboletos's">
+                                                    <span class="sign"><i class="icon-play"></i></span>
+                                                    <span class="lbl">Reporte boletos</span>                                    
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="item-1 deeper parent">

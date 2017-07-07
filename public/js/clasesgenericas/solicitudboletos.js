@@ -84,8 +84,8 @@
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
-                  data:{IdColaborador:$("#txtcolaboradorsolid").val(),IdGestor:$("#stlgestorsol").val()
-                  ,IdCanalDistribucion:$("#stlcanalsol").val(),BoletosSolicitados:$("#txtboletossol").val(),BoletosAutorizados:""
+                  data:{IdColaborador:$("#txtcolaboradorsolid").val()
+                  ,BoletosSolicitados:$("#txtboletossol").val(),BoletosAutorizados:""
                    ,Estatus:'V',IdSorteo:$("#sltsorteosol").val()}   
             }).done(function(data) {
                   //notificar 
@@ -111,8 +111,6 @@
 
                         $("#txtboletossol").val(data[0].BoletosSolicitados)
                         $("#sltsorteosol").val(data[0].IdSorteo)
-                        $("#stlcanalsol").val(data[0].IdCanalDistribucion)
-                        $("#stlgestorsol").val(data[0].IdGestor)
                         $("#txtcolaboradorsol").val(data[0].Nombre+' '+data[0].ApellidoP+' '+data[0].ApellidoM)
                         $("#txtcolaboradorsolid").val(data[0].IdColaborador)
                         $("#txtidsolicitud").val(data[0].Id)
@@ -137,8 +135,8 @@
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
-                  data:{Id:$("#txtidsolicitud").val(),IdColaborador:$("#txtcolaboradorsolid").val(),IdGestor:$("#stlgestorsol").val()
-                  ,IdCanalDistribucion:$("#stlcanalsol").val(),BoletosSolicitados:$("#txtboletossol").val(),BoletosAutorizados:""
+                  data:{Id:$("#txtidsolicitud").val(),IdColaborador:$("#txtcolaboradorsolid").val()
+                  ,BoletosSolicitados:$("#txtboletossol").val(),BoletosAutorizados:""
                    ,Estatus:'V',IdSorteo:$("#sltsorteosol").val()}   
             }).done(function(data) {
                   //notificar 
@@ -223,14 +221,9 @@
         if($("#txtcolaboradorsolid").val()==""){
             cadena = cadena + "     * No se ha capturado el colaborador .\n"
         }
-        
-        if($("#stlcanalsol").val()=="#"){
-            cadena = cadena +"   * No se ha capturado el canal de distribucion .\n"
-        }
 
-        if($("#stlgestorsol").val()=="#"){
-            cadena = cadena +"   * No se ha capturado el gestor .\n"
-        }
+
+
     
         if (cadena != ""){
             valido=false;
@@ -251,8 +244,6 @@
         $("#txtcolaboradorsolid").val("")
         $("#sltsorteosol").val("#")
         $("#txtcolaboradorsol").val("")
-        $("#stlcanalsol").val("#")
-        $("#stlgestorsol").val("#")
         $("#txtFoliosolicitud").val("")
         $("#txtidsolicitud").val("")
      }

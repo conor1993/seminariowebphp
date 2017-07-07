@@ -91,6 +91,7 @@
 
             var estatus = $("input[name='rdtestatus']:checked").val(); 
             var boletos = $("#txtboletosaut").val()
+            var  idcolaborador= $("#txtcolaboradorsolid").val();
             if (estatus=='R'){boletos=0} 
             $.ajax({
                   url:'/guardarautorizacionboletos',
@@ -98,7 +99,7 @@
                   type:'POST',
                   datatype:'html',
                   data:{Id:$("#txtidsolicitud").val(),BoletosAutorizados:boletos,Estatus:estatus,arregloBoletos:arregloBoletos,
-                        idsolicitud:idsolicitud,sorteo:sorteo,IdSorteo:$("#sltsorteosol").val()}   
+                        idsolicitud:idsolicitud,sorteo:sorteo,IdSorteo:$("#sltsorteosol").val(),idcolaborador:idcolaborador}   
             }).done(function(data) {
                   //notificar 
                   if(data != "404"){

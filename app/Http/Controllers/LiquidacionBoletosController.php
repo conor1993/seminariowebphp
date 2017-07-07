@@ -7,6 +7,7 @@ use App\WebCatSorteo;
 use App\SortCatMunicipios;
 use App\SortCatLocalidades;
 use App\webdeudores;
+use App\webmovdeudores;
 
 class LiquidacionBoletosController extends Controller
 {
@@ -57,14 +58,15 @@ class LiquidacionBoletosController extends Controller
                 $deudor->BoletosDevueltos=0;
                 $deudor->BoletosLiquidados=$request->entregados;
                 $deudor->save();
-            //
+                  $mesagge = "";
+            // 
             
         } catch (\Exception $e) {
             DB::rollback();
             $mesagge = $e->getMessage();
             //$mesagge = "404";
         }
-        $mesagge = "";
+
         DB::commit();
         return response()->json([$mesagge]);
     }
@@ -126,9 +128,19 @@ class LiquidacionBoletosController extends Controller
             $sorteo = $request->sorteo;
             $bolsdev = $request->cantLiquidar;
             $boletos = [];
+            $datasetBoletos = [];
+            $fechaActual = date("d/m/Y");
+            $IdColaborador = $request->idcolaborador;
         //OBTENEMOS EL ARREGLO DE BOLETOS K SE ACTUALIZARAN
             for ($i=0; $i <count($bols) ; $i++) { 
                 $boletos[$i] = $bols[$i];
+                $dataSet[] = [
+                        'IdColaborador'  => $IdColaborador,
+                        'NumeroBoleto' => $bols[$i],
+                        'IdSorteo' => $request->sorteo,
+                        'IdTipoMovimiento'=>'DEVO',
+                        'Fecha' => $fechaActual,
+                ];
             }
 
         //INIVIA LA TRANSACCION
@@ -147,9 +159,13 @@ class LiquidacionBoletosController extends Controller
                 $deudor->BoletosDevueltos=count($bols);
                 $deudor->BoletosLiquidados=$bolsdev;
                 $deudor->save();
-                $message ="";
                 //ELIMINAR ASIGNACIONES 
                 DB::table('WebAsignacionBoletos')->whereIn('NumeroBoleto',$boletos)->where('IdSorteo',$sorteo)->delete();
+                //SE REGISTRA LOS MOVIMIENTOS
+                DB::table('webmovdeudores')->insert($dataSet);
+                //MOVIMIENSTO DE LIQUIDACION 
+                $message ="";
+
             } catch (\Exception $e) {
                 DB::rollback();
                  $message = $e->getMessage();

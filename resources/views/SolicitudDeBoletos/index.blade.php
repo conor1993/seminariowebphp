@@ -52,39 +52,7 @@
 					<input type="hidden" class="form-control input-sm input-estilo" id="txtcolaboradorsolid">
 				</div>
 			</div>
-			<div class="col-md-12">
-				<div class="col-md-2">
-	    			<label class="label-estilo" id="stl"><b>Gestor:</b></label>
-				</div>	
-				<div class="col-md-4">
-					<SELECT CLASS="form-control input-sm input-estilo" id="stlgestorsol">
-						<option value="#">Seleccione una opcion</option>
-						<?php
-						if(isset($gestores)){
-							foreach($gestores as $gestor){
-								echo "<option value='".$gestor->Id."'>".$gestor->Nombre."</opction>"; 
-							}
-						}
 
-						?>
-					</SELECT>
-				</div>
-				<div class="col-md-2">
-					<label class="label-estilo"><b>Canala de distribucion</b></label>
-				</div>
-				<div class="col-md-4">
-					<select class="form-control input-sm input-estilo" id="stlcanalsol">
-						<option value="#">Seleccione una opcion</option>
-						<?php
-							if(isset($canales)){
-								foreach($canales as $canal){
-									echo "<option value='".$canal->Id."'>".$canal->Nombre."</option>";
-								}
-							}
-						?>
-					</select>
-				</div>
-			</div>
 			<div class="col-md-12">
 				<div class="col-md-2">
 					<label class="label-estilo"><b>Boletos solicitados</b></label>

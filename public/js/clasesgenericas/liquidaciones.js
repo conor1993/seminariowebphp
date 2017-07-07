@@ -2,7 +2,7 @@
 //------------------------------------variables globales--------------------------------------------//
 
     var dialog;
-
+    var dialogobusqueda;
 //-------------------------------------eventos del sistema-----------------------------------------//
     //evento load
     $(document).ready(function(){
@@ -17,19 +17,15 @@
         // click a boton guardar
         $("#GuardarPago").click(function(){
             dialogo = dialogNotificador();
-
             if($("input[name='rdtliqu']:checked").val() == 'T'){
-                dialog.open();
                 guardar()
             }else if ($("input[name='rdtliqu']:checked").val() == 'P') {
-                dialog.open();
                 actualizar();
             }
-
         });
         //click a boton cancelar
         $("#CancelarPago").click(function(){
-            //
+            limpiar()
         });
         //perder el foco combo estados
         $("#txtdevolbiendo").blur(function(){
@@ -38,9 +34,24 @@
         //ENTER EN LA CAJA DE TEXTO DE COLABORDOR
        $("#txtNomcolaborador").keypress(function(e){
             if(e.which  == 13){
+                dialogo = dialogNotificador();
+                dialog.open();
             	consultar();
             }
        });
+       //boton para buscar colaborador por nombre
+       $("#btnbuscarCol").click(function (){
+            $("#myModal").modal()
+       });
+
+       $("#txtNomcol").keypress(function(e){
+            if(e.which  == 13){
+                dialogo = dialogNotificador();
+                dialog.open();
+                consultarNombreCol($("#txtNomcol").val())
+            }
+       });
+
        //EVENTO DISPARADO AL PRESIONAR LOS RADIO BUTTON
        //clicl en los radiobutton
         $('input[name="rdtliqu"]').click(function(){
@@ -62,6 +73,15 @@
                 $("#divcobros2").show();
                 $("#divcobros1").hide();
         });
+        //EVENTO AL PRESIONAR LA FILA SOBRE EL GRID
+        $('#tabla_lista_col tbody').on('click', 'tr', function (event) { 
+            var idcol = $(this).closest('tr').data('col');
+                dialogo = dialogNotificador();
+                dialog.open();
+                $("#myModal").modal("hide");
+                $("#txtNomcolaborador").val(idcol)
+                consultar()
+        }); 
     }
 
 
@@ -81,29 +101,37 @@
             }
         });
 
-       $('#txttotal').val(monto)
+        
 
+        BootstrapDialog.confirm('Desea continuar el total es '+monto, function(result){
+            if(result) {
+                // se abre el dialogo para procesar la opercacion
+                dialog.open();
+
+                $.ajax({
+                      url:'/guardarliquidacionboletos',
+                      headers:{'X-CSRF-TOKEN':$("#tokena").val()},
+                      type:'POST',
+                      datatype:'html',
+                      data:{Id:iddeuda,Monto:monto,entregados:entregados}   
+                }).done(function(data) {
+                      //notificar 
+                      if(data != "404"){
+                        notificar(true,"Operacion Exitosa")
+                      }else if (data = "404") {
+                        notificar(false,"Error")
+                      }
+                      //limpiar campos
+                      limpiar();
+                }).fail( function() {
+                    //si falla se notifica
+                    notificar(false,"Error")
+                });
+            }
+        });
         // MEDIANTE AJAX REALIZAMOS LA ACTUALIZACION DE LOS DATOS DE LA DEUDA
         
-            $.ajax({
-                  url:'/guardarliquidacionboletos',
-                  headers:{'X-CSRF-TOKEN':$("#tokena").val()},
-                  type:'POST',
-                  datatype:'html',
-                  data:{Id:iddeuda,Monto:monto,entregados:entregados}   
-            }).done(function(data) {
-                  //notificar 
-                  if(data != "404"){
-                    notificar(true,"Operacion Exitosa")
-                  }else if (data = "404") {
-                    notificar(false,"Error")
-                  }
-                  //limpiar campos
-                  limpiar();
-            }).fail( function() {
-                //si falla se notifica
-                notificar(false,"Error")
-            });
+
 
     }
 
@@ -120,6 +148,7 @@
             }).done(function(dat) {
                 data = dat[0]
                 if(data[0] != null){
+
                 	$("#txtNomcolaborador").val(data[0].Nombre+' '+data[0].ApellidoP+' '+data[0].ApellidoM)
                 	$("#txtADomicilio").val(data[0].Domicilio)
                 	$("#txtcodpostald").val(data[0].Cp)
@@ -128,6 +157,7 @@
                 	$("#txtNumeropersonal").val(data[0].NumeroExt)
                 	$("#sltlocaliaddom").val(data[0].IdLocalidad)
                 	$("#txtComission").val(data[0].Commission)
+                    $("#txtidsolicitud").val(data[0].IdColaborador);
                 	//llenar tabla de saldos
                     var anterior=0
 
@@ -148,7 +178,10 @@
                     if($('#tbodyCodigo').find('tr').length  == 1){
                         $('#tbodyboletos').append(columna)
                     }
-
+                    //notificar el exito
+                   dialog.close()
+                }else{
+                    notificar(true,"No se encontro el deudor")
                 }
             }).fail( function(){
                 //si falla se notifica
@@ -161,6 +194,7 @@
         var iddeuda
         var sorteo  = $("#stlsorteo").val()
         var cantLiquidar=0
+        var idcolaborador = $("#txtidsolicitud").val();
         //obteniendo el id de la deuda k se enecnura en la tabla de  saldos
         $("input[name=chk]").each(function (index) {  
             if($(this).is(':checked')){
@@ -174,28 +208,60 @@
         $("input[name=radiosol]").each(function (index) {  
             if($(this).is(':checked')){
                 iddeuda = $(this).closest('tr').data('deuda')
-            }        });
-        
+            } 
+         });
+
+
+        BootstrapDialog.confirm('Desea continuar', function(result){
+            if(result) {
+                // se abre el dialogo para procesar la opercacion
+                dialog.open();
+                $.ajax({
+                      url:'/Actualizarliquidacionboletos',
+                      headers:{'X-CSRF-TOKEN':$("#tokena").val()},
+                      type:'POST',
+                      datatype:'html',
+                      data:{Id:iddeuda,arregloBoletos:arregloBoletos,sorteo:sorteo,cantLiquidar:cantLiquidar,idcolaborador:idcolaborador}   
+                }).done(function(data) {
+                      //notificar 
+                      if(data != "404"){
+                        notificar(true,"Operacion Exitosa")
+                      }else if (data = "404") {
+                        notificar(false,"Error")
+                      }
+                      //limpiar campos
+                      limpiar();
+                }).fail( function() {
+                    //si falla se notifica
+                    notificar(false,"Error")
+                });
+            }
+        });        
+    }
+
+    function consultarNombreCol(Nombre){
+           $('#tbodycol tr').remove()
             $.ajax({
-                  url:'/Actualizarliquidacionboletos',
+                  url:'/consultarColbaradorNombre',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
-                  data:{Id:iddeuda,arregloBoletos:arregloBoletos,sorteo:sorteo,cantLiquidar:cantLiquidar}   
-            }).done(function(data) {
-                  //notificar 
-                  if(data != "404"){
-                    notificar(true,"Operacion Exitosa")
-                  }else if (data = "404") {
-                    notificar(false,"Error")
-                  }
-                  //limpiar campos
-                  limpiar();
-            }).fail( function() {
+                  data:{Nombre:Nombre}   
+            }).done(function(dat) {
+                data = dat[0]
+                if(data[0] != null){
+                    $('#tbodycol tr').remove()
+                    for (var i = data.length - 1; i >= 0; i--) {
+                            $('#tbodycol').append('<tr data-col="'+data[i].Id+'" ><td>'+data[i].Id+'</td><td>'+data[i].Nombre+' '+data[i].ApellidoP+' '+data[i].ApellidoM+'</td><td>'+data[i].Domicilio+'</td></tr>');
+                    }
+                    dialog.close()
+                }else{
+                    notificar(true,"No se encontraron coincidencias")
+                }
+            }).fail( function(){
                 //si falla se notifica
                 notificar(false,"Error")
             });
-            
     }
 
 
@@ -250,8 +316,8 @@
     }
     //limpiar campos 
     function limpiar(){
-        $("#txtliquidando").val("") 
-        
+        $("input:text").val("") 
+        $('#tbodyCodigo tr').remove()
     }
 
     //validar campo devolucion
@@ -259,4 +325,20 @@
     	if($("#txtdevolbiendo").val()== ""){
     		$("#txtdevolbiendo").val("0")
     	}
+    }
+    // ventana de dialogo de confirmacion
+    function ventanaConfirmacion(mesnaje){
+        var flag= false
+        BootstrapDialog.show({
+            title: 'Button Hotkey',
+            message: $(mesnaje),
+            buttons: [{
+                label: '(Enter) Button A',
+                cssClass: 'btn-primary',
+                hotkey: 13, // Enter.
+                action: function() {
+                    flag = true
+                }
+            }]
+        });
     }

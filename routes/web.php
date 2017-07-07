@@ -27,11 +27,17 @@ Route::get('/', function () {
 
 ///  SORTEO
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------CATALOGOS------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 		//RUTAS DE COLABORADORES
 		Route::get('/colaboradores', 'ColaboradoresController@index');
 		Route::post('/guardarColaboradores','ColaboradoresController@store');
 		Route::post('/consultarColaboradores', 'ColaboradoresController@show');
 		Route::post('/ActualizarColaboradores', 'ColaboradoresController@update');
+		Route::post('/consultarColbaradorNombre', 'ColaboradoresController@shownombre');
 
 
 		//RUTAS DE COBRADORES
@@ -68,6 +74,10 @@ Route::get('/', function () {
 		Route::post('/consultarSorteos', 'SorteosController@show');
 		Route::post('/ActualizarSorteos', 'SorteosController@update');
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------MOVIMIENTOS----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+
 		//RUTAS DE SOLICITUD DE BOLETOS
 		Route::get('/solicitudboletos', 'SolicitudDeBoletosController@index');
 		Route::post('/guardarsolicitudboletos','SolicitudDeBoletosController@store');
@@ -92,13 +102,39 @@ Route::get('/', function () {
 		Route::post('/consultarliquidacionboletos', 'LiquidacionBoletosController@show');
 		Route::post('/Actualizarliquidacionboletos', 'LiquidacionBoletosController@update');
 
+		//ASIGNACION DE COBRADORES
+		Route::get('/asignacioncobradores', 'AsignacionCobradorController@index');
+		Route::post('/guardarasignacioncobradores','AsignacionCobradorController@store');
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------REPORTES-------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 		//REPORTE DE BOLETOS
 		Route::get('/reporteboletos', 'ReporteBoletosController@index');
+			//-----boletos liquidados
+		Route::get('/crearpdfreporteboletos', 'ReporteBoletosController@store');
+		Route::post('/consultarreporteboletos', 'ReporteBoletosController@show');
+		Route::get('/crearpdfreporteboletosAsignados', 'ReporteBoletosController@showPdfAsignados');
+		Route::post('/consultarboletosAsignados', 'ReporteBoletosController@showAsignados');
+		Route::get('/crearpdfreporteboletosnoAsignados', 'ReporteBoletosController@showshowPdfnoasignados');
+
 
 		//REPORTE DE COLABORADORES
 		Route::get('/reportecolaboradores', 'ReporteColaboradoresController@index');
+			//-----PENDIETES DE PAGO POR GESTOR
+		Route::post('/consultarPendientesDePagoGestor', 'ReporteColaboradoresController@showpendientesporgestor');
+		Route::get('/crearpdfreportependientesgestor', 'ReporteColaboradoresController@descargarpendientespdf');
+			//-----PENDIENTES DE PAGO POR CANAl
+		Route::post('/consultarPendientesDePagocanal', 'ReporteColaboradoresController@showpendientesporcanal');
+		Route::get('/crearpdfPendientesDePagocanal', 'ReporteColaboradoresController@descargarpendientescanalpdf');
+
 
 		//REPORTE DE MOVIMIENTOS
 		Route::get('/reportemovimientos', 'ReporteMoviminetosController@index');
+
+
 
 		
