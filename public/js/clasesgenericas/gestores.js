@@ -13,6 +13,7 @@
 		buscarID()
 		//validaciones 
 		agregarVladicaciones();
+
 	});
 
 	function iniciarBotones(){
@@ -76,7 +77,7 @@
     //consulta de canal por id
     function consultarGestor(id){
          $.ajax({
-              url:'/consultargestores',
+              url: UURL+"/consultargestores",
               headers:{'X-CSRF-TOKEN':$("#tokena").val()},
               type:'POST',
               datatype:'html',

@@ -50,6 +50,9 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <script type="text/javascript">
+        var UURL = {!! json_encode(url('/')) !!}
+   </script>
 
 </head>
 
