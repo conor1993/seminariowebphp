@@ -123,25 +123,25 @@
                                                 </a>
                                             </li>
                                             <li class="item-4">
-                                                <a class="" href="/cobradores">
+                                                <a class="" href="{{ url('cobradores') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
                                                     <span class="lbl">Cobradores</span> 
                                                 </a>
                                             </li>    
                                             <li class="item-5">
-                                                <a class="" href="/canalesdistribucion">
+                                                <a class="" href="{{ url('canalesdistribucion') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
                                                     <span class="lbl">Cnalaes de distribucion</span> 
                                                 </a>
                                             </li>      
                                             <li class="item-5">
-                                                <a class="" href="/gestores">
+                                                <a class="" href="{{ url('gestores') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
                                                     <span class="lbl">Gestores</span> 
                                                 </a>
                                             </li>
                                             <li class="item-5">
-                                                <a class="" href="/sorteos">
+                                                <a class="" href="{{ url('sorteos') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
                                                     <span class="lbl">Sorteos</span> 
                                                 </a>
@@ -155,25 +155,25 @@
                                         </a>
                                         <ul class="children nav-child unstyled small collapse" id="sub-item-3">
                                             <li class="item-6">
-                                                <a class="" href="/solicitudboletos">
+                                                <a class="" href="{{ url('solicitudboletos') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
                                                     <span class="lbl">Solicitud de boletos</span>                                    
                                                 </a>
                                             </li>
                                             <li class="item-8">
-                                                <a class="" href="/autorizacionboletos">
+                                                <a class="" href="{{ url('autorizacionboletos') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
                                                     <span class="lbl">Autorizacion de boletos</span>                                    
                                                 </a>
                                             </li>
                                             <li class="item-9">
-                                                <a class="" href="/liquidacionboletos">
+                                                <a class="" href="{{ url('liquidacionboletos') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
                                                     <span class="lbl">Liquidacion de boletos</span>                                    
                                                 </a>
                                             </li>
                                             <li class="item-10">
-                                                <a class="" href="/asignacioncobradores">
+                                                <a class="" href="{{ url('asignacioncobradores') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
                                                     <span class="lbl">Asignacion Cobradores</span>                                    
                                                 </a>
@@ -188,13 +188,13 @@
                                         </a>
                                         <ul class="children nav-child unstyled small collapse" id="sub-item-4">
                                             <li class="item-6">
-                                                <a class="" href="/reportecolaboradores">
+                                                <a class="" href="{{ url('reportecolaboradores') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
                                                     <span class="lbl">Reporte colaboradores</span>                                    
                                                 </a>
                                             </li>
                                             <li class="item-8">
-                                                <a class="" href="/reporteboletos's">
+                                                <a class="" href="{{ url('reporteboletos') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
                                                     <span class="lbl">Reporte boletos</span>                                    
                                                 </a>
