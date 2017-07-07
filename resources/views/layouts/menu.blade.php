@@ -117,7 +117,7 @@
                                         </a>
                                         <ul class="children nav-child unstyled small collapse" id="sub-item-2">
                                             <li class="item-3">
-                                                <a class="" href="/colaboradores">
+                                                <a class="" href="{{ url('colaboradores') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
                                                     <span class="lbl">Colaboradores</span> 
                                                 </a>
