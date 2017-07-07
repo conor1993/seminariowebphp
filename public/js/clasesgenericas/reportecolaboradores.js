@@ -86,7 +86,7 @@ var dialog;
 		
 
 		$.ajax({
-			url:'/consultarPendientesDePagoGestor',
+			url:UURL+'/consultarPendientesDePagoGestor',
 			headers:{'X-CSRF-TOKEN':$("#tokena").val()},
 			type:'POST',
 			datatype:'HTML',
@@ -110,7 +110,7 @@ var dialog;
 		var idcanal = $("#stlcanal").val()
 
 		$.ajax({
-			url:'/consultarPendientesDePagocanal',
+			url:UURL+'/consultarPendientesDePagocanal',
 			headers:{'X-CSRF-TOKEN':$("#tokena").val()},
 			type:'POST',
 			datatype:'html',

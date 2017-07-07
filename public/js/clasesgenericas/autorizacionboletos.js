@@ -94,7 +94,7 @@
             var  idcolaborador= $("#txtcolaboradorsolid").val();
             if (estatus=='R'){boletos=0} 
             $.ajax({
-                  url:'/guardarautorizacionboletos',
+                  url:UURL+'/guardarautorizacionboletos',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -118,7 +118,7 @@
 
     function consultar(folio){
             $.ajax({
-                  url:'/consultarsolicitudboletos',
+                  url:UURL+'/consultarsolicitudboletos',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -148,7 +148,7 @@
 
     function actualizar(){
             $.ajax({
-                  url:'/EditarEstatussolicitudboletos',
+                  url:UURL+'/EditarEstatussolicitudboletos',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -177,7 +177,7 @@
         var arregloBoletos = obtenerRegloBoletos(inicial,finall) 
 
             $.ajax({
-                  url:'/validarBoletos',
+                  url:UURL+'/validarBoletos',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',

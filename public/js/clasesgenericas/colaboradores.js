@@ -87,7 +87,7 @@
         var IdLocalidadEmpresa   = $("#sltlocaliadempleo").val()
 
             $.ajax({
-                  url:'/guardarColaboradores',
+                  url:UURL+'/guardarColaboradores',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -141,7 +141,7 @@
         var IdLocalidadEmpresa   = $("#sltlocaliadempleo").val()
 
             $.ajax({
-                  url:'/guardarColaboradores',
+                  url:UURL+'/guardarColaboradores',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -163,7 +163,7 @@
     //metodo para consultar los municipios
     function consultarMunicipios(id,input){
         $.ajax({
-            url:'/ConsultarMunicipios',
+            url:UURL+'/ConsultarMunicipios',
             headers:{'X-CSRF-TOKEN':$("#tokena").val()},
             type:'POST',
             datatype:'html',
@@ -186,7 +186,7 @@
 
     function consultarLocalidades(id,input){
         $.ajax({
-            url:'/ConsultarLocalidades',
+            url:UURL+'/ConsultarLocalidades',
             headers:{'X-CSRF-TOKEN':$("#tokena").val()},
             type:'POST',
             datatype:'html',

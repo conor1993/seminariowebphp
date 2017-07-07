@@ -57,7 +57,7 @@ $(document).ready(function(){
     //metodo que sirve para guardar el sorteo de distribucion mediante ajax
     function guardarSorteo(){
             $.ajax({
-                  url:'/guardarSorteos',
+                  url:UURL+'/guardarSorteos',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -84,7 +84,7 @@ $(document).ready(function(){
     //consulta de canal por id
     function consultarSorteo(id){
          $.ajax({
-              url:'/consultarSorteos',
+              url:UURL+'/consultarSorteos',
               headers:{'X-CSRF-TOKEN':$("#tokena").val()},
               type:'POST',
               datatype:'html',
@@ -106,7 +106,7 @@ $(document).ready(function(){
     // actualizar sorteo
     function actualizarSorteo(){
             $.ajax({
-                  url:'/ActualizarSorteos',
+                  url:UURL+'/ActualizarSorteos',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',

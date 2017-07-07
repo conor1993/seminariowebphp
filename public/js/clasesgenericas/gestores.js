@@ -54,7 +54,7 @@
     //metodo que sirve para guardar el sorteo de distribucion mediante ajax
     function guardarGestor(){
             $.ajax({
-                  url:'/guardargestores',
+                  url:UURL+'/guardargestores',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -98,7 +98,7 @@
     // actualizar sorteo
     function  actualizarGestor(){
             $.ajax({
-                  url:'/Actualizargestores',
+                  url:UURL+'/Actualizargestores',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',

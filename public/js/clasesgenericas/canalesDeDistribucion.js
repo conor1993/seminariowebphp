@@ -50,7 +50,7 @@ function iniciarBotones(){
 //metodo que sirve para guardar el canal de distribucion mediante ajax
 function guardarCanalDistribucion(){
         $.ajax({
-              url:'/guardarCanalDistribucion',
+              url:UURL+'/guardarCanalDistribucion',
               headers:{'X-CSRF-TOKEN':$("#tokena").val()},
               type:'POST',
               datatype:'html',
@@ -71,7 +71,7 @@ function guardarCanalDistribucion(){
 //acutalizar canales de distribucion
 function actualizarCanalDistribucion(){
         $.ajax({
-              url:'/ActualizaRrCanalDistribucion',
+              url:UURL+'/ActualizaRrCanalDistribucion',
               headers:{'X-CSRF-TOKEN':$("#tokena").val()},
               type:'POST',
               datatype:'html',
@@ -126,7 +126,7 @@ function buscarID() {
 //consulta de canal por id
 function consultarCanalDistribucion(id){
      $.ajax({
-          url:'/consultarCanalDistribucion',
+          url:UURL+'/consultarCanalDistribucion',
           headers:{'X-CSRF-TOKEN':$("#tokena").val()},
           type:'POST',
           datatype:'html',

@@ -83,7 +83,7 @@
     function consultar(){
                 var idsorteo = $("#stlsorteo").val()
                 $.ajax({
-                      url:'/consultarreporteboletos',
+                      url:UURL+'/consultarreporteboletos',
                       headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                       type:'POST',
                       datatype:'html',
@@ -104,7 +104,7 @@
     function consultarasignados(){
                 var idsorteo = $("#stlsorteo").val()
                 $.ajax({
-                      url:'/consultarboletosAsignados',
+                      url:UURL+'/consultarboletosAsignados',
                       headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                       type:'POST',
                       datatype:'html',

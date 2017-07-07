@@ -109,7 +109,7 @@
                 dialog.open();
 
                 $.ajax({
-                      url:'/guardarliquidacionboletos',
+                      url:UURL+'/guardarliquidacionboletos',
                       headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                       type:'POST',
                       datatype:'html',
@@ -140,7 +140,7 @@
         var columna =""
 
             $.ajax({
-                  url:'/consultarliquidacionboletos',
+                  url:UURL+'/consultarliquidacionboletos',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -217,7 +217,7 @@
                 // se abre el dialogo para procesar la opercacion
                 dialog.open();
                 $.ajax({
-                      url:'/Actualizarliquidacionboletos',
+                      url:UURL+'/Actualizarliquidacionboletos',
                       headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                       type:'POST',
                       datatype:'html',
@@ -242,7 +242,7 @@
     function consultarNombreCol(Nombre){
            $('#tbodycol tr').remove()
             $.ajax({
-                  url:'/consultarColbaradorNombre',
+                  url:UURL+'/consultarColbaradorNombre',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',

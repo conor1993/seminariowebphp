@@ -80,7 +80,7 @@
 
 
             $.ajax({
-                  url:'/guardarsolicitudboletos',
+                  url:UURL+'/guardarsolicitudboletos',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -100,7 +100,7 @@
 
     function consultar(){
             $.ajax({
-                  url:'/consultarsolicitudboletos',
+                  url:UURL+'/consultarsolicitudboletos',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -131,7 +131,7 @@
 
     function actualizar(){
             $.ajax({
-                  url:'/Actualizarsolicitudboletos',
+                  url:UURL+'/Actualizarsolicitudboletos',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -151,7 +151,7 @@
 
     function consultarColaborador(id){
             $.ajax({
-                  url:'/consultarColaboradores',
+                  url:UURL+'/consultarColaboradores',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',

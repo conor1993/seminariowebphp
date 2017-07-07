@@ -55,7 +55,7 @@
     //metodo para guardar cobradores
     function guardarCobradores(){
             $.ajax({
-                  url:'/guardarCobradores',
+                  url:UURL+'/guardarCobradores',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -78,7 +78,7 @@
     //metodo para consultar cobradores
     function  consultarCobrador(id){
             $.ajax({
-                  url:'/consultarCobradores',
+                  url:UURL+'/consultarCobradores',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
@@ -101,7 +101,7 @@
     //metodo para actualizar cobradores
     function  actualizarCobradores(){
             $.ajax({
-                  url:'/ActualizaRrCobradores',
+                  url:UURL+'/ActualizaRrCobradores',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',

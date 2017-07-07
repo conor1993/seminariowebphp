@@ -62,7 +62,7 @@ var dialog
 		var IdColaborador = $("#txtidNomcolaborador").val()
 
 		$.ajax({
-			url:'/guardarasignacioncobradores',
+			url:UURL+'/guardarasignacioncobradores',
 			headers:{'X-CSRF-TOKEN':$("#tokena").val()},
 			type:'POST',
 			datatype:'HTML',
@@ -82,7 +82,7 @@ var dialog
     function consultarNombreCol(Nombre){
            $('#tbodycol tr').remove()
             $.ajax({
-                  url:'/consultarColbaradorNombre',
+                  url:UURL+'/consultarColbaradorNombre',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
                   type:'POST',
                   datatype:'html',
