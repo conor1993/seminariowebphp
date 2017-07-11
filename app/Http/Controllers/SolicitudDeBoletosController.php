@@ -25,10 +25,11 @@ class SolicitudDeBoletosController extends Controller
      */
     public function index()
     {    
+         $idcol = DB::select('select Id  from WebCatSorteo where (select max(fecha) from WebCatSorteo) = fecha');
          $canales =  WebCatCanalesdistribucion::all();
          $gestores =  WebCatGestores::all();
          $sorteos =  WebCatSorteo::all();
-         return view('SolicitudDeBoletos.index',['canales'=>$canales,'gestores'=>$gestores,'sorteos'=>$sorteos]);
+         return view('SolicitudDeBoletos.index',['canales'=>$canales,'gestores'=>$gestores,'sorteos'=>$sorteos,'idcol'=>$idcol]);
     }
 
     /**

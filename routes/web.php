@@ -38,6 +38,7 @@ Route::get('/', function () {
 		Route::post('/consultarColaboradores', 'ColaboradoresController@show');
 		Route::post('/ActualizarColaboradores', 'ColaboradoresController@update');
 		Route::post('/consultarColbaradorNombre', 'ColaboradoresController@shownombre');
+		Route::post('/consultarColbaradorNombretodos', 'ColaboradoresController@shownombretodos');
 
 
 		//RUTAS DE COBRADORES

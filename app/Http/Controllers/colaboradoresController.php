@@ -111,19 +111,23 @@ class colaboradoresController extends Controller
                                 ->where('sol.Estatus', '=', 'A')
                                 ->where('Nombre', 'like', $request->Nombre.'%')
                                 ->get();
-
-             
                  return response()->json([$colaboradores]);
             }
     }
 
     
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function shownombretodos(Request $request){
+            if($request->ajax()){
+                $colaboradores = DB::table('WebCatColaboradores as col')
+                                ->select('col.*')
+                                ->where('Nombre', 'like', $request->Nombre.'%')
+                                ->get();
+                 return response()->json([$colaboradores]);
+            }
+    }
+
+
+
     public function edit($id)
     {
         //

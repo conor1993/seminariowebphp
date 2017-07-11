@@ -27,16 +27,14 @@ class AutorizacionBoletosController extends Controller
     public function index()
     {
 
-         $canales =  WebCatCanalesdistribucion::all();
-         $gestores =  WebCatGestores::all();
          $sorteos =  WebCatSorteo::all();
-
+         $idcol = DB::select('select Id  from WebCatSorteo where (select max(fecha) from WebCatSorteo) = fecha');
          $solicitudes = DB::table('WebSolicitudBoletos')
                 ->join('WebCatColaboradores', 'WebSolicitudBoletos.idcolaborador', '=', 'WebCatColaboradores.Id')
                 ->select('WebSolicitudBoletos.*', 'WebCatColaboradores.Nombre', 'WebCatColaboradores.ApellidoP', 'WebCatColaboradores.ApellidoM')
                 ->where('Estatus', '=', 'V')->get();
 
-         return view('AutorizacionBoletos.index',['canales'=>$canales,'gestores'=>$gestores,'sorteos'=>$sorteos,'solicitudes'=>$solicitudes]);
+         return view('AutorizacionBoletos.index',['sorteos'=>$sorteos,'solicitudes'=>$solicitudes,'idcol'=>$idcol]);
 
     }
 

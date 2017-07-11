@@ -65,6 +65,26 @@
                 consultar()
             }
        });
+       //boton para buscar colaborador por nombre
+       $("#btnbuscarCol").click(function (){
+            $("#myModal").modal()
+       });
+       $("#txtNomcol").keypress(function(e){
+            if(e.which  == 13){
+                dialogo = dialogNotificador();
+                dialog.open();
+                consultarNombreCol($("#txtNomcol").val())
+            }
+       });
+       //
+        //EVENTO AL PRESIONAR LA FILA SOBRE EL GRID
+        $('#tabla_lista_col tbody').on('click', 'tr', function (event) { 
+            var idcol  = $(this).closest('tr').find('td:eq(0)').text()
+            var nombre = $(this).closest('tr').find('td:eq(1)').text()
+                $("#myModal").modal("hide");
+                $("#txtcolaboradorsol").val(nombre)
+                $("#txtcolaboradorsolid").val(idcol)
+        }); 
     }
 
 
@@ -165,6 +185,30 @@
                     notificar(true,"No existe el colaborador")
                 }
             }).fail( function() {
+                //si falla se notifica
+                notificar(false,"Error")
+            });
+    }
+    function consultarNombreCol(Nombre){
+           $('#tbodycol tr').remove()
+            $.ajax({
+                  url:UURL+'/consultarColbaradorNombretodos',
+                  headers:{'X-CSRF-TOKEN':$("#tokena").val()},
+                  type:'POST',
+                  datatype:'html',
+                  data:{Nombre:Nombre}   
+            }).done(function(dat) {
+                data = dat[0]
+                if(data[0] != null){
+                    $('#tbodycol tr').remove()
+                    for (var i = data.length - 1; i >= 0; i--) {
+                            $('#tbodycol').append('<tr data-col="'+data[i].Id+'" ><td>'+data[i].Id+'</td><td>'+data[i].Nombre+' '+data[i].ApellidoP+' '+data[i].ApellidoM+'</td><td>'+data[i].Domicilio+'</td></tr>');
+                    }
+                    dialog.close()
+                }else{
+                    notificar(true,"No se encontraron coincidencias")
+                }
+            }).fail( function(){
                 //si falla se notifica
                 notificar(false,"Error")
             });

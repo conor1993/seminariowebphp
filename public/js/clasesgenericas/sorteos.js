@@ -36,6 +36,7 @@ $(document).ready(function(){
             	}
             }
         });
+
     }
 
     ///buscar por id cuando presionan un registro sobre la tablaMetodo para buscar por id 
@@ -72,7 +73,7 @@ $(document).ready(function(){
                   }
                   // se agrega el dato al grid
                   var rowNode = $('#tabla_lista_sorteos').DataTable().row.add([data[0].Nombre, data[0].Precio,data[0].Fecha,data[0].FechaLimite]).draw().node();
-                  $(rowNode).attr('data-codigo',data[0].id);
+                  $(rowNode).attr('data-codigo',data[0].Id);
                   //limpiar campos
                   limpiar();
             }).fail( function() {

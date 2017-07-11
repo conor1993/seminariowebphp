@@ -47,13 +47,13 @@
 	    			<label class="label-estilo" ><b>Fecha inicial:</b></label>
 	    		</div>
 	    		<div class="col-md-4">
-	    			<input type="text" class="form-control input-sm input-estilo" id="txtfechainicial">
+	    			<input type="date" class="form-control input-sm input-estilo" id="txtfechainicial">
 	    		</div>
 	    		<div class="col-md-2">
 	    			<label class="label-estilo" ><b>Fecha limite:</b></label>
 	    		</div>
 	    		<div class="col-md-4">
-	    			<input type="text" class="form-control input-sm input-estilo" id="txtfechalimite">
+	    			<input type="date" class="form-control input-sm input-estilo" id="txtfechalimite">
 	    		</div>
 			</div>
 			<div class="col-md-12">

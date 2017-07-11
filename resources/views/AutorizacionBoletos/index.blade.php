@@ -38,7 +38,12 @@
 					<?php
 					if (isset($sorteos)) {
 						foreach ($sorteos as $sorteo) {
-							echo "<option value = '".$sorteo->Id."'>".$sorteo->Nombre."</option>";
+							
+							if($idcol[0]->Id == $sorteo->Id){
+								echo "<option value = '".$sorteo->Id."' selected>".$sorteo->Nombre."</option>";
+							}else{
+						     	echo "<option value = '".$sorteo->Id."'>".$sorteo->Nombre."</option>";
+							}
 						}
 					}
 					  ?>
@@ -51,39 +56,6 @@
 				<div class="col-md-4">
 					<input type="text" class="form-control input-sm input-estilo" id="txtcolaboradorsol" disabled="disabled">
 					<input type="hidden" class="form-control input-sm input-estilo" id="txtcolaboradorsolid">
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="col-md-2">
-	    			<label class="label-estilo" id="stl"><b>Gestor:</b></label>
-				</div>	
-				<div class="col-md-4">
-					<SELECT CLASS="form-control input-sm input-estilo" id="stlgestorsol" disabled="disabled">
-						<option value="#">Seleccione una opcion</option>
-						<?php
-						if(isset($gestores)){
-							foreach($gestores as $gestor){
-								echo "<option value='".$gestor->Id."'>".$gestor->Nombre."</opction>"; 
-							}
-						}
-
-						?>
-					</SELECT>
-				</div>
-				<div class="col-md-2">
-					<label class="label-estilo"><b>Canala de distribucion</b></label>
-				</div>
-				<div class="col-md-4">
-					<select class="form-control input-sm input-estilo" id="stlcanalsol" disabled="disabled">
-						<option value="#">Seleccione una opcion</option>
-						<?php
-							if(isset($canales)){
-								foreach($canales as $canal){
-									echo "<option value='".$canal->Id."'>".$canal->Nombre."</option>";
-								}
-							}
-						?>
-					</select>
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -119,10 +91,26 @@
 			</div>
 			<!-- area de asignacion -->
          	<div class="col-md-12"><h1></h1></div>
-			 <div style="display:none" class="col-md-12" id="asignacionboletosdiv" >
+			<div class="col-md-12 btn-group " style="display:none" data-toggle="buttons" id="asignacionboletosmenu">
 	              <fieldset>
-	                  <legend>Asignacion de Boletos:</legend>
-						<div class="col-md-2" >
+	                <legend>Asignacion de Boletos:</legend>
+				<div class="col-md-4">
+					<label class="btn btn-default rdtmenu1"  >
+						Rnago
+						<input type="radio" name="rdtmenu" id="rdtrango" autocomplete="off" value="R" >
+						<span class="glyphicon glyphicon-ok"></span>
+					</label>
+					<label class="btn btn-default rdtmenu2"  >
+						Tecleo
+						<input type="radio" name="rdtmenu" id="rdttecleo" autocomplete="off" value="T" >
+						<span class="glyphicon glyphicon-ok"></span>
+					</label>
+				</div>
+				<fieldset>
+			</div>
+			<div class="col-md-12"><h1></h1></div>
+			 <div style="display:none" class="col-md-12" id="asignacionboletosdiv">
+						<div class="col-md-2">
 							<label class="label-estilo"><p>Boleto Inicial</p></label>
 						</div>
 						<div class="col-md-4">
@@ -134,7 +122,22 @@
 						<div class="col-md-4">
 							<input type="text" id="txtbofinal" class="form-control input-sm input-estilo">
 						</div>
-	               <fieldset>
+	              
+              </div>
+			 <div style="display:none" class="col-md-12" id="asignacionboletosdivtecleo">
+						<div class="col-md-2">
+							<label class="label-estilo"><p>Boletos</p></label>
+						</div>
+						<div class="col-md-4">
+						   <textarea class="form-control input-sm input-estilo" id="txtboletosarea"  rows="5" cols="50"></textarea>
+						</div>
+						<div class="col-md-2">
+							
+						</div>
+						<div class="col-md-4">
+							
+						</div>
+	              
               </div>
             <!-- fin de el area -->
          		<div class="col-md-12"><h1></h1></div>

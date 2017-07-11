@@ -148,6 +148,8 @@
             }).done(function(dat) {
                 data = dat[0]
                 if(data[0] != null){
+                    var liquidados ='0'
+                    var devueltos = '0'
 
                 	$("#txtNomcolaborador").val(data[0].Nombre+' '+data[0].ApellidoP+' '+data[0].ApellidoM)
                 	$("#txtADomicilio").val(data[0].Domicilio)
@@ -158,12 +160,15 @@
                 	$("#sltlocaliaddom").val(data[0].IdLocalidad)
                 	$("#txtComission").val(data[0].Commission)
                     $("#txtidsolicitud").val(data[0].IdColaborador);
+
                 	//llenar tabla de saldos
                     var anterior=0
 
                     for (var i = data.length - 1; i >= 0; i--) {
                         if(anterior != data[i].IdColaborador){
-                            $('#tbodyCodigo').append('<tr data-deuda="'+data[i].Id+'" ><td>'+data[i].Folio+'</td><td>'+data[i].BoletosAutorizados+'</td><td>'+data[i].BoletosLiquidados+'</td><td>'+data[i].boletosdevueltos+'</td><td>'+data[i].MontoAcordado+'</td><td>'+data[i].Commission+'<td><input type="radio" name="radiosol"></td>'+'</tr>');
+                            if(data[i].BoletosLiquidados!=null){liquidados=data[i].BoletosLiquidados}
+                            if(data[i].boletosdevueltos!=null){devueltos=data[i].boletosdevueltos}
+                            $('#tbodyCodigo').append('<tr data-deuda="'+data[i].Id+'" ><td>'+data[i].Folio+'</td><td>'+data[i].BoletosAutorizados+'</td><td>'+liquidados+'</td><td>'+devueltos+'</td><td>'+data[i].MontoAcordado+'</td><td>'+data[i].Commission+'<td><input type="radio" name="radiosol"></td>'+'</tr>');
                         }
                         anterior = data[i].IdColaborador
                             columna = columna+'<td>'+data[i].NumeroBoleto+'</td><td><input type="checkbox" name="chk" value="'+data[i].NumeroBoleto+'"></td>'

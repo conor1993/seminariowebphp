@@ -42,6 +42,7 @@
     <!-- select -->
     <script src="js/vendor/jquery/bootstrap-dialog.js"></script>
     <script src="js/vendor/jquery/select2.js"></script>
+    <script src="js/vendor/jquery/jquery.datetimepicker.js"></script>
 
    <link href="css/estilosInput.css" rel="stylesheet">
 
@@ -110,7 +111,7 @@
                             <li class="item-1 deeper parent active">
                                 <a class="" href="#">
                                     <span data-toggle="collapse" data-parent="#menu-group-1" href="#sub-item-1" class="sign"><i class="icon-plus icon-white"></i></span>
-                                    <span class="lbl">Biblioteca</span>                      
+                                    <span class="lbl">Sorteo</span>                      
                                 </a>
                                 <ul class="children nav-child unstyled small collapse" id="sub-item-1">
                                     <li class="item-2 deeper parent active">
@@ -209,7 +210,7 @@
                             <li class="item-1 deeper parent">
                                 <a class="" href="#">
                                     <span data-toggle="collapse" data-parent="#menu-group-1" href="#sub-item-8" class="sign"><i class="icon-plus icon-white"></i></span>
-                                    <span class="lbl">Sorteo</span>                      
+                                    <span class="lbl">Biblioteca</span>                      
                                 </a>
                                 <ul class="children nav-child unstyled small collapse" id="sub-item-8">
                                     <li class="item-9 deeper parent">

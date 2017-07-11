@@ -2,7 +2,7 @@
 //------------------------------------variables globales--------------------------------------------//
 
     var dialog;
-
+    var regular = "/^[0-9]+([,][0-9]+)?$/"
 //-------------------------------------eventos del sistema-----------------------------------------//
     //evento load
     $(document).ready(function(){
@@ -58,20 +58,59 @@
         $('input[name="rdtestatus"]').click(function(){
             var estatus = $("input[name='rdtestatus']:checked").val(); 
             if (estatus=="A") {
-                $("#asignacionboletosdiv").show();
+                $("#asignacionboletosmenu").show();
             }else if(estatus=="R"){
-                $("#asignacionboletosdiv").hide();
+                $("#asignacionboletosmenu").hide();
             }
         });
 
         $(".rdtestatus1").click(function(){
-            $("#asignacionboletosdiv").show();
+            $("#asignacionboletosmenu").show();
         });
 
         $(".rdtestatus2").click(function(){
-            $("#asignacionboletosdiv").hide();
+            $("#asignacionboletosmenu").hide();
+        });
+        //menu radios buton  MENU DE BOLETOS
+        $('input[name="rdtmenu"]').click(function(){
+            var estatus = $("input[name='rdtmenu']:checked").val(); 
+            if (estatus=="R") {
+                $("#asignacionboletosdiv").show();
+                asignacionboletosdivtecleo
+            }else if(estatus=="R"){
+                $("#asignacionboletosdiv").hide();
+                $("#asignacionboletosdivtecleo").show();
+                
+            }
         });
 
+        $(".rdtmenu1").click(function(){
+            $("#asignacionboletosdiv").show();
+            $("#asignacionboletosdivtecleo").hide();
+            
+        });
+
+        $(".rdtmenu2").click(function(){
+            $("#asignacionboletosdiv").hide();
+            $("#asignacionboletosdivtecleo").show();
+            
+        });
+        //validar las  comas en el area de texto
+        $("#txtboletosarea").keypress(function(e){
+             /* if(/^[0-9]+([,][0-9]+)?$/.test(e.key)){
+                  alert("cumple")
+              }else{
+                alert("no cumple")
+              }*/
+              cadena = $("#txtboletosarea").val().toString();
+              laststring = cadena.substring(cadena.length-1)
+              if(e.key ==','){
+                  if(e.key==laststring || laststring==''){
+                     return false;
+                  }
+              }
+      
+        });
 
     }
 
@@ -82,17 +121,17 @@
 
             // obtener boletos arreglos
             // se obtiene el arreglo de boletos k se van a comprobar
-            var inicial = $("#txtbolinicial").val()
-            var finall  = $("#txtbofinal").val()
-            var sorteo  = $("#sltsorteosol").val()
-            var arregloBoletos = obtenerRegloBoletos(inicial,finall) 
+            var sorteo  = $("#sltsorteosol").val() 
             var idsolicitud = $("#txtidsolicitud").val()
             //------------------------------------------------------
-
+            var arregloBoletos = obtenerRegloBoletos()
+            //------------------------------------------------------
             var estatus = $("input[name='rdtestatus']:checked").val(); 
             var boletos = $("#txtboletosaut").val()
             var  idcolaborador= $("#txtcolaboradorsolid").val();
             if (estatus=='R'){boletos=0} 
+
+              
             $.ajax({
                   url:UURL+'/guardarautorizacionboletos',
                   headers:{'X-CSRF-TOKEN':$("#tokena").val()},
@@ -113,6 +152,7 @@
                 //si falla se notifica
                 notificar(false,"Error")
             });
+            
 
     }
 
@@ -170,11 +210,9 @@
 
     function verificarBoletos(){
         var boletosRpetidos="";
-        var inicial = $("#txtbolinicial").val()
-        var finall  = $("#txtbofinal").val()
         var sorteo  = $("#sltsorteosol").val()
         // se obtiene el arreglo de boletos k se van a comprobar
-        var arregloBoletos = obtenerRegloBoletos(inicial,finall) 
+        var arregloBoletos = obtenerRegloBoletos() 
 
             $.ajax({
                   url:UURL+'/validarBoletos',
@@ -232,6 +270,7 @@
     function agregarVladicaciones(){
         $("#txtboletossol").validateNumLetter(' 0123456789');
         $("#txtboletosaut").validateNumLetter(' 0123456789');
+        $("#txtboletosarea").validateNumLetter(',0123456789');
     }
 
     //validacion de campos obligatorios
@@ -242,12 +281,14 @@
         if($("#txtboletosaut").val()==""){
             cadena = cadena +"   * No se ha capturado el numero de boletos autorizados .\n"
         }
+        /*
         if($("#txtbolinicial").val()==""){
             cadena = cadena +"   * No se ha capturado el numero de boleto inicial .\n"
         }
         if($("#txtbofinal").val()==""){
             cadena = cadena +"   * No se ha capturado el numero de boleto final .\n"
         }
+        */
         if($("#txtidsolicitud").val()==""){
             cadena = cadena + "     * No seleccionado la solicitud .\n"
         }
@@ -301,13 +342,29 @@
         
     }
     //OBTENER ARREGLO DE BOLETOS
-    function obtenerRegloBoletos(inicial,finall){
-        var limiteboletos = finall - inicial
-        var boletos = []
-        for (var i = 0; i < limiteboletos+1; i++) {
-            boletos.push(inicial)
-            inicial++
+    function obtenerRegloBoletos(){
+      var op = $("input[name='rdtmenu']:checked").val()
+      var boletos = []
+        switch (op) {
+          case 'R':
+                var inicial = $("#txtbolinicial").val()
+                var finall  = $("#txtbofinal").val()
+                var limiteboletos = finall - inicial
+                for (var i = 0; i < limiteboletos+1; i++) {
+                    boletos.push(inicial)
+                    inicial++
+                }
+            break;
+          case 'T':
+                var cadenaboletos = $("#txtboletosarea").val()
+                boletos=cadenaboletos.split(",")
+            break;
+          default:
+            // statements_def
+            break;
         }
+
+
 
         return boletos
     }

@@ -20,6 +20,7 @@ class SorteosController extends Controller
      */
     public function index()
     {   
+       
         $sorteos = WebCatSorteo::all();
         return view('Sorteos.index',['sorteos' => $sorteos]);
     }

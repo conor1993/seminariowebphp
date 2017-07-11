@@ -22,11 +22,11 @@ class LiquidacionBoletosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {   $idcol = DB::select('select Id  from WebCatSorteo where (select max(fecha) from WebCatSorteo) = fecha');
          $sorteos =  WebCatSorteo::all();
          $municipios =  SortCatMunicipios::where('idEstado', 25)->get();
          $localidades =  SortCatLocalidades::where('idMunicipio', 6)->get();
-         return view('LiquidacionDeBoletos.index',['sorteos'=>$sorteos,'municpios' =>$municipios,'localidades' =>$localidades]);
+         return view('LiquidacionDeBoletos.index',['sorteos'=>$sorteos,'municpios' =>$municipios,'localidades' =>$localidades,'idcol'=>$idcol]);
     }
 
     /**

@@ -67,7 +67,11 @@
                                         <?PHP
                                         if(isset($sorteos)){
                                         	foreach ($sorteos as $sorteo ) {
-                                        		echo "<option value='".$sorteo->Id."'>".$sorteo->Nombre."</option>";
+                                            if($idcol[0]->Id == $sorteo->Id){
+                                             echo "<option value='".$sorteo->Id."'selected>".$sorteo->Nombre."</option>";
+                                            }else{
+                                               echo "<option value='".$sorteo->Id."'>".$sorteo->Nombre."</option>";
+                                            }
                                         	}
                                         }
                                         ?>
