@@ -55,6 +55,8 @@ class SorteosController extends Controller
                            $Sorteos->CantidadBoletos = $request->CantidadBoletos;
                            $Sorteos->save();
                     }
+                    //insertamos el foleador
+                    DB::table('WebFolioSolicitudes')->insert(['IdSorteo' => $Sorteos->Id, 'Consecutivo' => 0]);
                     //creamos el arreglo de boletos
                     $cantidadBoletos = $request->CantidadBoletos+1;
                     $folioinicia     = $request->Folioinc;
@@ -74,8 +76,8 @@ class SorteosController extends Controller
                     DB::table('WebCatBoletos')->insert($dataSet);
             }catch (\Exception $e) {
                  DB::rollback();
-                 //$Sorteos = $e->getMessage();
-                 $Sorteos = "404";
+                 $Sorteos = $e->getMessage();
+                 //$Sorteos = "404";
             }
 
         DB::commit();

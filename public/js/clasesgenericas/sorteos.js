@@ -164,10 +164,11 @@ $(document).ready(function(){
   }
   //validaciones a los valores 
   function agregarVladicaciones(){
-    $("#txtFoliosorteo").validateNumLetter(' 0123456789');
-      $("#txtpreciosorteo").validateNumLetter(' 0123456789');
-      $("#txtnumeroboletosorteo").validateNumLetter(' 0123456789');
-      $("#txtcantidadboletos").validateNumLetter(' 0123456789');
+    $("#txtFoliosorteo").validateNumLetter('0123456789');
+      $("#txtpreciosorteo").validateNumLetter('0123456789');
+      $("#txtnumeroboletosorteo").validateNumLetter('0123456789');
+      $("#txtcantidadboletos").validateNumLetter('0123456789');
+      
   }
   //validar camposobligatorios
   function validarCamposObligatorios(){ 
