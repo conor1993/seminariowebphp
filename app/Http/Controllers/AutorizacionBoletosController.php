@@ -52,7 +52,7 @@ class AutorizacionBoletosController extends Controller
            $dataSet = [];
            $dataSetmov=[];
            $Idsolicitud =$request->Id;
-           $fechaActual = date("d/m/Y");
+           $fechaActual = date('Y-m-d');
            $IdColaborador = $request->idcolaborador;
            //LLENAR DATASET
             for ($i=0; $i < count($bolets) ; $i++) { 
@@ -91,7 +91,7 @@ class AutorizacionBoletosController extends Controller
                      $deudor = new  webdeudores;
                      $deudor->Idsolicitud = $Idsolicitud;
                      $deudor->MontoAcordado = $total;
-                     $deudor->FechaIngreso = date("d/m/Y");
+                     $deudor->FechaIngreso =date('Y-m-d');
                      $deudor->Estatus='V';
                      $deudor->save();
                  //SE REGISTRA EL MOVIMIENTO
