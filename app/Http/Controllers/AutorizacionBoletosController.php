@@ -91,7 +91,7 @@ class AutorizacionBoletosController extends Controller
                      $deudor = new  webdeudores;
                      $deudor->Idsolicitud = $Idsolicitud;
                      $deudor->MontoAcordado = $total;
-                     $deudor->FechaIngreso = '22-06-2017';
+                     $deudor->FechaIngreso = date("d/m/Y");
                      $deudor->Estatus='V';
                      $deudor->save();
                  //SE REGISTRA EL MOVIMIENTO
