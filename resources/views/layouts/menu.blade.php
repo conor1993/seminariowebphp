@@ -135,7 +135,7 @@
                                             <li class="item-5">
                                                 <a class="" href="{{ url('canalesdistribucion') }}">
                                                     <span class="sign"><i class="icon-play"></i></span>
-                                                    <span class="lbl">Cnalaes de distribucion</span> 
+                                                    <span class="lbl">Canalaes de distribucion</span> 
                                                 </a>
                                             </li>      
                                             <li class="item-5">
