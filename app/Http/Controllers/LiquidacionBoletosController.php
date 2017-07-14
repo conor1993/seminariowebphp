@@ -53,7 +53,7 @@ class LiquidacionBoletosController extends Controller
             //SEACTUALIZA LA DEUDA
                 $deudor =   webdeudores::find($request->Id);
                 $deudor->MontoPagado= $deudor->MontoAcordado;
-                $deudor->FechaPago = date("d/m/Y");
+                $deudor->FechaPago =  date('Y-m-d');
                 $deudor->Estatus='P';
                 $deudor->BoletosDevueltos=0;
                 $deudor->BoletosLiquidados=$request->entregados;
@@ -129,7 +129,7 @@ class LiquidacionBoletosController extends Controller
             $bolsdev = $request->cantLiquidar;
             $boletos = [];
             $datasetBoletos = [];
-            $fechaActual = date("d/m/Y");
+            $fechaActual = date('Y-m-d');
             $IdColaborador = $request->idcolaborador;
         //OBTENEMOS EL ARREGLO DE BOLETOS K SE ACTUALIZARAN
             for ($i=0; $i <count($bols) ; $i++) { 
@@ -154,7 +154,7 @@ class LiquidacionBoletosController extends Controller
                 //SE ACTUALIZA LA DEUDA
                 $deudor =   webdeudores::find($request->Id);
                 $deudor->MontoPagado=$total;
-                $deudor->FechaPago = date("d/m/Y");
+                $deudor->FechaPago = date('Y-m-d');
                 $deudor->Estatus='P';
                 $deudor->BoletosDevueltos=count($bols);
                 $deudor->BoletosLiquidados=$bolsdev;
