@@ -151,7 +151,7 @@
   }
   //validaciones a los valores 
 	  function agregarVladicaciones(){
-	  	$("#txtcomisiongestor").validateNumLetter(' 0123456789');
+	  	$("#txtcomisiongestor").validateNumLetter('0123456789');
 	   }
   //validar camposobligatorios
   function validarCamposObligatorios(){ 

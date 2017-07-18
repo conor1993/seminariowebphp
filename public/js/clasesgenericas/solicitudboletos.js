@@ -141,7 +141,7 @@
                     dialogo = dialogNotificador();
                     dialog.open();
                     limpiar()
-                    notificar(true,"No existse la solicitud")
+                    notificar(true,"No existe la solicitud")
                 }
             }).fail( function() {
                 //si falla se notifica

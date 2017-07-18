@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="col-md-2">
-                                <label class="label-estilo" ><b>Commission:</b></label>
+                                <label class="label-estilo" ><b>comisión:</b></label>
                             </div>
                             <div class="col-md-4">
                                 <input class="form-control input-sm input-estilo" type="text" id="txtcommissioncol">
@@ -100,7 +100,7 @@
                  <legend>Domicilio:</legend>
                     <div class="col-md-12">
                         <div class="col-md-2">
-                            <label class="label-estilo" ><b>Dmoicilio:</b></label>
+                            <label class="label-estilo" ><b>Domicilio:</b></label>
                         </div>
                         <div class="col-md-4">
                             <input class="form-control input-sm input-estilo" type="text" id="txtADomicilio">

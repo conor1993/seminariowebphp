@@ -39,7 +39,7 @@
 	    			<label class="label-estilo" ><b>Comision:</b></label>
 	    		</div>
 	    		<div class="col-md-4">
-	    			<input type="text" class="form-control input-sm input-estilo" id="txtacomisioncol">
+	    			<input type="text" class="form-control input-sm input-estilo" id="txtacomisioncol" maxlength="9">
 	    		</div>
 			</div>
 			<div class="col-md-12">

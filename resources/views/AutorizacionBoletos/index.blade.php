@@ -96,7 +96,7 @@
 	                <legend>Asignacion de Boletos:</legend>
 				<div class="col-md-4">
 					<label class="btn btn-default rdtmenu1"  >
-						Rnago
+						Rango
 						<input type="radio" name="rdtmenu" id="rdtrango" autocomplete="off" value="R" >
 						<span class="glyphicon glyphicon-ok"></span>
 					</label>

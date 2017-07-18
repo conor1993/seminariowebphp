@@ -119,7 +119,7 @@
             <div class="col-md-12">
                     <div class="col-md-12">
                         <div class="col-md-2">
-                            <label class="label-estilo" ><b>Dmoicilio:</b></label>
+                            <label class="label-estilo" ><b>Domicilio:</b></label>
                         </div>
                         <div class="col-md-4">
                             <input class="form-control input-sm input-estilo" type="text" id="txtADomicilio" disabled="disabled">
@@ -192,7 +192,7 @@
                                        <th>Devueltos</th>
                                        <th>Saldo</th>
                                        <th>Commission</th>
-                                       <th>chek</th>
+                                       <th>check</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
